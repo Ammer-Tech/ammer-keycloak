@@ -1,0 +1,72 @@
+{
+    "name": "merchant-keycloak-new",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@testing-library/jest-dom": "5.17.0",
+        "@testing-library/react": "13.4.0",
+        "@testing-library/user-event": "13.5.0",
+        "@types/jest": "27.5.2",
+        "@types/node": "16.18.40",
+        "@types/react": "18.2.19",
+        "@types/react-dom": "18.2.7",
+        "i18next": "^23.4.4",
+        "i18next-browser-languagedetector": "^7.1.0",
+        "i18next-http-backend": "^2.2.1",
+        "keycloakify": "^9.6.3",
+        "mobx": "^6.10.0",
+        "mobx-react": "^9.0.0",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-i18next": "^13.0.3",
+        "react-loading-skeleton": "^3.3.1",
+        "react-router-dom": "^6.14.2",
+        "react-scripts": "5.0.1",
+        "typescript": "4.9.5",
+        "web-vitals": "2.1.4"
+    },
+    "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "7.21.11",
+        "@typescript-eslint/eslint-plugin": "5.56.0",
+        "@typescript-eslint/parser": "5.56.0",
+        "eslint": "8.36.0",
+        "eslint-config-prettier": "8.8.0",
+        "eslint-plugin-import": "2.27.5",
+        "eslint-plugin-prettier": "4.2.1",
+        "eslint-plugin-react": "7.32.2",
+        "eslint-plugin-react-hooks": "4.6.0",
+        "eslint-plugin-simple-import-sort": "10.0.0",
+        "prettier": "2.8.6"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "lint:eslint": "./node_modules/.bin/eslint src/ --ext .ts,.tsx --fix",
+        "lint:prettier": "./node_modules/.bin/prettier -c --write src",
+        "lint:tsc": "./node_modules/typescript/bin/tsc",
+        "lint": "npm run lint:tsc && npm run lint:eslint && npm run lint:prettier",
+        "build-keycloak-theme": "npm run build && keycloakify"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
+}
