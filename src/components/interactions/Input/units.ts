@@ -58,6 +58,7 @@ export const Input = styled.input<{ withPadding: boolean }>`
         !withPadding ? theme.text.normal.fontWeight : theme.text.normal.fontWeight};
     font-size: ${({ withPadding }) =>
         !withPadding ? theme.text.tiny.fontSize : theme.text.tiny.fontSize};
+    line-height: 16.2px;
 
     color: black;
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import type { PageProps } from 'keycloakify/login/pages/PageProps';
 
 import { Form } from 'components/containers';
-import { Header } from 'components/core';
+import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
 
 import * as STYLE from 'styles';
@@ -29,10 +29,12 @@ export default function Register(
 
     const [isEmailValid, setEmailValid] = useState(true);
 
+    const [isPasswordsMatch, setPasswordsMatch] = useState(true);
+
     const [errorText, setErrorText] = useState('');
 
     const conditionForButtonDisabled =
-        !firstName || !lastName || !email || !password || !confirmPassword;
+        !firstName || !lastName || !email || !password || !confirmPassword || !isEmailValid;
 
     // const { msg, msgStr } = i18n;
 
@@ -112,11 +114,8 @@ export default function Register(
 
                             <Input
                                 value={email}
-                                setValue={(value) => {
-                                    setEmailValid(true);
-
-                                    setEmail(value);
-                                }}
+                                setValue={setEmail}
+                                onChangeHelpFunc={() => setEmailValid(true)}
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',
@@ -157,7 +156,14 @@ export default function Register(
 
                             <Input
                                 value={confirmPassword}
-                                setValue={setConfirmPassword}
+                                setValue={(value) => {
+                                    setConfirmPassword(value);
+
+                                    confirmPassword.length >= password.length - 1 &&
+                                        setPasswordsMatch(password === value);
+                                }}
+                                focusHandler={() => setPasswordsMatch(true)}
+                                blurHandler={() => setPasswordsMatch(password === confirmPassword)}
                                 inputProps={{
                                     id: 'password-confirm',
                                     name: 'password-confirm',
@@ -166,6 +172,8 @@ export default function Register(
                                 type="password"
                                 placeholder="Confirm Password"
                                 isRequired
+                                isError={!isPasswordsMatch}
+                                errorText="Passwords don't match"
                             />
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
@@ -179,6 +187,8 @@ export default function Register(
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>
+
+            <Footer />
         </STYLE.PageWrapper>
     );
 }

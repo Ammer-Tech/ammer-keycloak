@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Form } from 'components/containers';
-import { Header } from 'components/core';
+import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
 
 import * as STYLE from 'styles';
@@ -17,10 +17,12 @@ export const RegisterPage = () => {
 
     const [isEmailValid, setEmailValid] = useState(true);
 
+    const [isPasswordsMatch, setPasswordsMatch] = useState(true);
+
     // const isPasswordsMatch = password === confirmPassword;
 
     const conditionForButtonDisabled =
-        !firstName || !lastName || !email || !password || !confirmPassword;
+        !firstName || !lastName || !email || !password || !confirmPassword || !isEmailValid;
 
     return (
         <STYLE.PageWrapper>
@@ -91,11 +93,8 @@ export const RegisterPage = () => {
 
                             <Input
                                 value={email}
-                                setValue={(value) => {
-                                    setEmailValid(true);
-
-                                    setEmail(value);
-                                }}
+                                setValue={setEmail}
+                                onChangeHelpFunc={() => setEmailValid(true)}
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',
@@ -136,7 +135,14 @@ export const RegisterPage = () => {
 
                             <Input
                                 value={confirmPassword}
-                                setValue={setConfirmPassword}
+                                setValue={(value) => {
+                                    setConfirmPassword(value);
+
+                                    confirmPassword.length >= password.length - 1 &&
+                                        setPasswordsMatch(password === value);
+                                }}
+                                focusHandler={() => setPasswordsMatch(true)}
+                                blurHandler={() => setPasswordsMatch(password === confirmPassword)}
                                 inputProps={{
                                     id: 'password-confirm',
                                     name: 'password-confirm',
@@ -145,6 +151,8 @@ export const RegisterPage = () => {
                                 type="password"
                                 placeholder="Confirm Password"
                                 isRequired
+                                isError={!isPasswordsMatch}
+                                errorText="Passwords don't match"
                             />
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
@@ -158,6 +166,8 @@ export const RegisterPage = () => {
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>
+
+            <Footer />
         </STYLE.PageWrapper>
     );
 };

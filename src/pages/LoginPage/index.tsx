@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Form } from 'components/containers';
-import { Header } from 'components/core';
+import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
 
 import * as STYLE from 'styles';
@@ -41,11 +41,8 @@ export const LoginPage = () => {
 
                             <Input
                                 value={email}
-                                setValue={(value) => {
-                                    setEmailValid(true);
-
-                                    setEmail(value);
-                                }}
+                                setValue={setEmail}
+                                onChangeHelpFunc={() => setEmailValid(true)}
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',
@@ -56,7 +53,7 @@ export const LoginPage = () => {
                                 isError={!isEmailValid}
                                 errorText="Email not valid"
                                 blurHandler={() =>
-                                    !!email
+                                    !!email && email !== 'admin'
                                         ? setEmailValid(validateEmail(email))
                                         : setEmailValid(true)
                                 }
@@ -84,14 +81,19 @@ export const LoginPage = () => {
                     {false && <STYLE.ErrorText>Invalid username or password</STYLE.ErrorText>}
 
                     <LoginS.ButtonsWrapper>
-                        <Button styleScheme="secondary" disabled={!email || !password}>
+                        <Button
+                            styleScheme="secondary"
+                            disabled={!email || !password || !isEmailValid}
+                        >
                             Continue
                         </Button>
 
-                        <STYLE.Link href="/">Forgot your password?</STYLE.Link>
+                        {/* <STYLE.Link href="/">Forgot your password?</STYLE.Link> */}
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>
+
+            <Footer />
         </STYLE.PageWrapper>
     );
 };

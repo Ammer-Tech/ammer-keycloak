@@ -27,6 +27,9 @@ export const { getKcContext } = createGetKcContext<KcContextExtension>({
             // message: { type: "error", summary: "This is an error" }
         },
         {
+            pageId: 'login-reset-password.ftl',
+        },
+        {
             pageId: 'register.ftl',
             authorizedMailDomains: [
                 'example.com',

@@ -10,6 +10,7 @@ export const PageWrapper = styled.div`
     align-items: center;
 
     width: 100%;
+    min-height: 100vh;
 
     overflow: hidden;
 `;
@@ -23,7 +24,8 @@ export const PageContent = styled.div`
 
     width: 100%;
     max-width: ${theme.maxContentWidth};
-    margin-top: 144px;
+    margin: auto 0;
+    padding: 32px 0;
 
     overflow: hidden;
 `;

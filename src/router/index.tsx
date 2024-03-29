@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import { ThemeProvider } from '@emotion/react';
 import { observer } from 'mobx-react';
 
-import { Footer } from 'components/core';
-
 import * as PAGES from 'pages';
 
 // import { useRootStore } from 'stores/initStore';
@@ -34,8 +32,6 @@ export const NavigationRouter = observer(() => {
 
                     <Route path="*" element={<PAGES.LoginPage />} />
                 </Routes>
-
-                <Footer />
             </S.MainWrapper>
         </Router>
         // </ThemeProvider>

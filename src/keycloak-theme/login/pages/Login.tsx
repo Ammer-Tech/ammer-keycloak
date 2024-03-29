@@ -3,7 +3,7 @@ import type { PageProps } from 'keycloakify/login/pages/PageProps';
 import { useConstCallback } from 'keycloakify/tools/useConstCallback';
 
 import { Form } from 'components/containers';
-import { Header } from 'components/core';
+import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
 
 import * as STYLE from 'styles';
@@ -23,6 +23,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
     // @ts-ignore
     const { kcContext, i18n } = props;
 
+    // @ts-ignore
     const { realm, url, login, message } = kcContext;
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
@@ -90,11 +91,8 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
                             <Input
                                 value={email}
-                                setValue={(value) => {
-                                    setEmailValid(true);
-
-                                    setEmail(value);
-                                }}
+                                setValue={setEmail}
+                                onChangeHelpFunc={() => setEmailValid(true)}
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',
@@ -105,7 +103,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                                 isError={!isEmailValid}
                                 errorText="Email not valid"
                                 blurHandler={() =>
-                                    !!email
+                                    !!email && email !== 'admin'
                                         ? setEmailValid(validateEmail(email))
                                         : setEmailValid(true)
                                 }
@@ -138,19 +136,21 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                         <Button
                             styleScheme="secondary"
                             isLoading={isLoginButtonDisabled}
-                            disabled={!email || !password || isLoginButtonDisabled}
+                            disabled={!email || !password || isLoginButtonDisabled || !isEmailValid}
                         >
                             Continue
                         </Button>
 
-                        {realm.resetPasswordAllowed && (
+                        {/* {realm.resetPasswordAllowed && (
                             <STYLE.Link href={url.loginResetCredentialsUrl}>
                                 Forgot your password?
                             </STYLE.Link>
-                        )}
+                        )} */}
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>
+
+            <Footer />
         </STYLE.PageWrapper>
     );
 }

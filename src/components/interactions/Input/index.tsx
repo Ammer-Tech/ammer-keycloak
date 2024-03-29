@@ -52,11 +52,13 @@ export const Input = forwardRef<HTMLInputElement, T.IInput>((props, ref) => {
                     ref={inputRef}
                     type={props.type}
                     value={props.value}
-                    onChange={(e) =>
-                        !!props.changeWithEvent
-                            ? props.changeWithEvent(e)
-                            : !!props.setValue && props.setValue(e.target.value)
-                    }
+                    onChange={(e) => {
+                        !!props.onChangeHelpFunc && props.onChangeHelpFunc();
+
+                        !!props.onChange
+                            ? props.onChange(e)
+                            : !!props.setValue && props.setValue(e.target.value);
+                    }}
                     disabled={props.disabled}
                     placeholder={props.placeholder}
                     withPadding={!props.isLabelRight && !!props.label}
@@ -87,7 +89,9 @@ export const Input = forwardRef<HTMLInputElement, T.IInput>((props, ref) => {
 
             <S.ErrorWrapper>
                 <Expand isOpen={!!props.isError || isError} transition={0.15}>
-                    <S.ErrorText>{props.errorText || 'Required field'}</S.ErrorText>
+                    <S.ErrorText>
+                        {props.isError ? props.errorText || 'Required field' : 'Required field'}
+                    </S.ErrorText>
                 </Expand>
             </S.ErrorWrapper>
         </S.Wrapper>
