@@ -157,8 +157,6 @@ export const RegisterPage = () => {
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
 
-                    {false && <STYLE.ErrorText>Invalid username or password</STYLE.ErrorText>}
-
                     <LoginS.ButtonsWrapper>
                         <Button styleScheme="secondary" disabled={conditionForButtonDisabled}>
                             Sign Up

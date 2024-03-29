@@ -1,13 +1,11 @@
-import { ButtonHTMLAttributes } from 'react';
-
-import { IconNames } from 'components/other';
+import { ButtonHTMLAttributes, ReactElement } from 'react';
 
 export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
     isLoading?: boolean;
     size?: 'medium' | 'small';
     styleScheme?: 'primary' | 'secondary' | 'square';
     maxWidth?: string;
-    iconName?: IconNames;
+    icon?: ReactElement;
     iconColor?: string;
     iconSize?: number;
     loaderSize?: number;

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import type { PageProps } from 'keycloakify/login/pages/PageProps';
 
-import { Form } from 'components/containers';
+import { Form, notification, NotificationRoot } from 'components/containers';
 import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
 
@@ -31,8 +31,6 @@ export default function Register(
 
     const [isPasswordsMatch, setPasswordsMatch] = useState(true);
 
-    const [errorText, setErrorText] = useState('');
-
     const conditionForButtonDisabled =
         !firstName || !lastName || !email || !password || !confirmPassword || !isEmailValid;
 
@@ -41,9 +39,7 @@ export default function Register(
     useEffect(() => {
         // @ts-ignore
         if (!!message?.error) {
-            setErrorText(message.summary);
-        } else {
-            setErrorText('');
+            notification.error(message.summary);
         }
     }, [message]);
 
@@ -178,8 +174,6 @@ export default function Register(
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
 
-                    {!!errorText && <STYLE.ErrorText>{errorText}</STYLE.ErrorText>}
-
                     <LoginS.ButtonsWrapper>
                         <Button styleScheme="secondary" disabled={conditionForButtonDisabled}>
                             Sign Up
@@ -189,6 +183,8 @@ export default function Register(
             </STYLE.PageContent>
 
             <Footer />
+
+            <NotificationRoot />
         </STYLE.PageWrapper>
     );
 }

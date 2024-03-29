@@ -2,7 +2,7 @@ import React, { type FormEventHandler, useEffect, useState } from 'react';
 import type { PageProps } from 'keycloakify/login/pages/PageProps';
 import { useConstCallback } from 'keycloakify/tools/useConstCallback';
 
-import { Form } from 'components/containers';
+import { Form, notification, NotificationRoot } from 'components/containers';
 import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
 
@@ -28,8 +28,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
-    const [isLoginError, setLoginError] = useState<boolean>(false);
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -38,9 +36,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
     useEffect(() => {
         // @ts-ignore
         if (!!message?.error) {
-            setLoginError(true);
-        } else {
-            setLoginError(false);
+            notification.error('Invalid username or password');
         }
     }, [message]);
 
@@ -128,10 +124,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
 
-                    {isLoginError && (
-                        <STYLE.ErrorText>Invalid username or password</STYLE.ErrorText>
-                    )}
-
                     <LoginS.ButtonsWrapper>
                         <Button
                             styleScheme="secondary"
@@ -151,6 +143,8 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
             </STYLE.PageContent>
 
             <Footer />
+
+            <NotificationRoot />
         </STYLE.PageWrapper>
     );
 }

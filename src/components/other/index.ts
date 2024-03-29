@@ -1,2 +1,3 @@
+export { Cross } from './Cross';
 export { Expand } from './Expand';
-export { Icon, IconNames } from './Icon';
+export { Icon } from './Icon';

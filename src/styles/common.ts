@@ -93,18 +93,6 @@ export const InputTitle = styled.p`
     color: ${theme.colors.blackText};
 `;
 
-export const ErrorText = styled.p`
-    font-size: ${theme.text.small.fontSize};
-    font-weight: ${theme.text.normal.fontWeight};
-    line-height: 18.9px;
-
-    color: ${theme.colors.red};
-
-    text-align: center;
-
-    margin-top: 30px;
-`;
-
 export const InputsWrapper = styled(ColumnWrapper)`
     gap: 28px;
     margin-top: 60px;

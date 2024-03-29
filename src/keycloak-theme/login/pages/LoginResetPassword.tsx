@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import type { PageProps } from 'keycloakify/login/pages/PageProps';
 
-import { Form } from 'components/containers';
-import { Header } from 'components/core';
+import { Form, notification, NotificationRoot } from 'components/containers';
+import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
 
 import * as STYLE from 'styles';
@@ -21,14 +21,11 @@ export default function LoginResetPassword(
 
     const [email, setEmail] = useState('');
     const [isEmailValid, setEmailValid] = useState(true);
-    const [errorText, setErrorText] = useState('');
 
     useEffect(() => {
         // @ts-ignore
-        if (message?.error) {
-            setErrorText(message.summary);
-        } else {
-            setErrorText('');
+        if (!!message?.error) {
+            notification.error(message.summary);
         }
     }, [message]);
 
@@ -81,8 +78,6 @@ export default function LoginResetPassword(
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
 
-                    {!!errorText && <STYLE.ErrorText>{errorText}</STYLE.ErrorText>}
-
                     <LoginS.ButtonsWrapper>
                         <Button styleScheme="secondary" disabled={!email || !isEmailValid}>
                             Reset Password
@@ -90,6 +85,10 @@ export default function LoginResetPassword(
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>
+
+            <Footer />
+
+            <NotificationRoot />
         </STYLE.PageWrapper>
     );
 }
