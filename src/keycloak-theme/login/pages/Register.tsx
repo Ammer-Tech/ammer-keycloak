@@ -66,7 +66,7 @@ export default function Register(
                         <STYLE.FlexAlignCenterWrapper gap={12}>
                             <STYLE.TextGray>Already have an account?</STYLE.TextGray>
 
-                            <STYLE.Link href="/">Log In</STYLE.Link>
+                            <STYLE.Link href={url.loginUrl}>Log In</STYLE.Link>
                         </STYLE.FlexAlignCenterWrapper>
                     </STYLE.ColumnWrapper>
 
