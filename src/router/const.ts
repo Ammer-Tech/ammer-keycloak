@@ -1,2 +1,2 @@
 export const MAIN_PAGE = '/';
-export const GOLD_PAGE = '/gold';
+export const REGISTER_PAGE = '/register';

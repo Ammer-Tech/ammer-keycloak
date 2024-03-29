@@ -8,6 +8,7 @@ import { Button, Input } from 'components/interactions';
 
 import * as STYLE from 'styles';
 import * as LoginS from 'styles/loginPage';
+import { validateEmail } from 'utils';
 
 import type { I18n } from '../i18n';
 import type { KcContext } from '../kcContext';
@@ -20,11 +21,9 @@ if (my_custom_param !== null) {
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: 'login.ftl' }>, I18n>) {
     // @ts-ignore
-    const { kcContext, i18n, doUseDefaultCss, classes } = props;
+    const { kcContext, i18n } = props;
 
-    // @ts-ignore
-    const { social, realm, url, usernameHidden, login, auth, registrationDisabled, message } =
-        kcContext;
+    const { realm, url, login, message } = kcContext;
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
@@ -32,6 +31,8 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [isEmailValid, setEmailValid] = useState(true);
 
     useEffect(() => {
         // @ts-ignore
@@ -89,14 +90,26 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
                             <Input
                                 value={email}
-                                setValue={setEmail}
+                                setValue={(value) => {
+                                    setEmailValid(true);
+
+                                    setEmail(value);
+                                }}
                                 inputProps={{
                                     name: 'email',
-                                    defaultValue: login.username ?? '',
                                     header: 'E-mail',
+                                    defaultValue: login.username ?? '',
                                 }}
                                 type="text"
                                 placeholder="E-mail"
+                                isError={!isEmailValid}
+                                errorText="Email not valid"
+                                blurHandler={() =>
+                                    !!email
+                                        ? setEmailValid(validateEmail(email))
+                                        : setEmailValid(true)
+                                }
+                                isRequired
                             />
                         </STYLE.ColumnWrapper>
 
@@ -112,6 +125,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                                 }}
                                 type="password"
                                 placeholder="Password"
+                                isRequired
                             />
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
@@ -129,7 +143,11 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                             Continue
                         </Button>
 
-                        <STYLE.Link href="/">Forgot your password?</STYLE.Link>
+                        {realm.resetPasswordAllowed && (
+                            <STYLE.Link href={url.loginResetCredentialsUrl}>
+                                Forgot your password?
+                            </STYLE.Link>
+                        )}
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>

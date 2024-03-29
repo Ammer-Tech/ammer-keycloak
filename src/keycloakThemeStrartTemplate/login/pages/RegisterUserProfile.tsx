@@ -32,7 +32,6 @@ export default function RegisterUserProfile(
             displayRequiredFields={true}
             headerNode={msg('registerTitle')}
         >
-            <h1>AAAAAAAAAAAAAA</h1>
             <form
                 id="kc-register-form"
                 className={getClassName('kcFormClass')}

@@ -30,7 +30,7 @@ export const NavigationRouter = observer(() => {
                 <Routes>
                     <Route path={C.MAIN_PAGE} element={<PAGES.LoginPage />} />
 
-                    <Route path={C.GOLD_PAGE} element={<PAGES.LoginPage />} />
+                    <Route path={C.REGISTER_PAGE} element={<PAGES.RegisterPage />} />
 
                     <Route path="*" element={<PAGES.LoginPage />} />
                 </Routes>

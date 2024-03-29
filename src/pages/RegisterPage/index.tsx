@@ -1,6 +1,4 @@
-// ejected using 'npx eject-keycloak-page'
-import React, { useEffect, useState } from 'react';
-import type { PageProps } from 'keycloakify/login/pages/PageProps';
+import React, { useState } from 'react';
 
 import { Form } from 'components/containers';
 import { Header } from 'components/core';
@@ -10,17 +8,7 @@ import * as STYLE from 'styles';
 import * as LoginS from 'styles/loginPage';
 import { validateEmail } from 'utils';
 
-import type { I18n } from '../i18n';
-import type { KcContext } from '../kcContext';
-
-export default function Register(
-    props: PageProps<Extract<KcContext, { pageId: 'register.ftl' }>, I18n>,
-) {
-    // @ts-ignore
-    const { kcContext, i18n } = props;
-
-    const { url, register, message } = kcContext;
-
+export const RegisterPage = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -29,27 +17,18 @@ export default function Register(
 
     const [isEmailValid, setEmailValid] = useState(true);
 
-    const [errorText, setErrorText] = useState('');
+    // const isPasswordsMatch = password === confirmPassword;
 
     const conditionForButtonDisabled =
         !firstName || !lastName || !email || !password || !confirmPassword;
-
-    // const { msg, msgStr } = i18n;
-
-    useEffect(() => {
-        // @ts-ignore
-        if (!!message?.error) {
-            setErrorText(message.summary);
-        } else {
-            setErrorText('');
-        }
-    }, [message]);
 
     return (
         <STYLE.PageWrapper>
             <Header
                 buttonName="Log In"
-                onClick={() => (window.location = url.loginUrl as Location | (string & Location))}
+                // onClick={() =>
+                //     (window.location = url.loginUrl as Location | (string & Location))
+                // }
             />
 
             <STYLE.PageContent>
@@ -57,7 +36,7 @@ export default function Register(
                     padding="64px 76px 42px"
                     maxWidth="550px"
                     id="kc-register-form"
-                    action={url.registrationAction}
+                    // action={url.registrationAction}
                     method="post"
                 >
                     <STYLE.ColumnWrapper>
@@ -81,7 +60,7 @@ export default function Register(
                                     id: 'firstName',
                                     name: 'firstName',
                                     header: 'First Name',
-                                    defaultValue: register.formData.firstName ?? '',
+                                    // defaultValue: register.formData.firstName ?? '',
                                 }}
                                 type="text"
                                 placeholder="First Name"
@@ -99,7 +78,7 @@ export default function Register(
                                     id: 'lastName',
                                     name: 'lastName',
                                     header: 'Last Name',
-                                    defaultValue: register.formData.lastName ?? '',
+                                    // defaultValue: register.formData.lastName ?? '',
                                 }}
                                 type="text"
                                 placeholder="Last Name"
@@ -120,7 +99,7 @@ export default function Register(
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',
-                                    defaultValue: register.formData.email ?? '',
+                                    // defaultValue: register.formData.email ?? '',
                                 }}
                                 type="text"
                                 placeholder="E-mail"
@@ -170,7 +149,7 @@ export default function Register(
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
 
-                    {!!errorText && <STYLE.ErrorText>{errorText}</STYLE.ErrorText>}
+                    {false && <STYLE.ErrorText>Invalid username or password</STYLE.ErrorText>}
 
                     <LoginS.ButtonsWrapper>
                         <Button styleScheme="secondary" disabled={conditionForButtonDisabled}>
@@ -181,4 +160,4 @@ export default function Register(
             </STYLE.PageContent>
         </STYLE.PageWrapper>
     );
-}
+};

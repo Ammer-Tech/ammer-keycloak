@@ -6,14 +6,22 @@ import { Button, Input } from 'components/interactions';
 
 import * as STYLE from 'styles';
 import * as LoginS from 'styles/loginPage';
+import { validateEmail } from 'utils';
 
 export const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [isEmailValid, setEmailValid] = useState(true);
+
     return (
         <STYLE.PageWrapper>
-            <Header buttonName="Become a Merchant" />
+            <Header
+                buttonName="Become a Merchant"
+                // onClick={() =>
+                //     (window.location = url.registrationUrl as Location | (string & Location))
+                // }
+            />
 
             <STYLE.PageContent>
                 <Form padding="64px 76px 42px" maxWidth="550px">
@@ -33,13 +41,26 @@ export const LoginPage = () => {
 
                             <Input
                                 value={email}
-                                setValue={setEmail}
+                                setValue={(value) => {
+                                    setEmailValid(true);
+
+                                    setEmail(value);
+                                }}
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',
+                                    // defaultValue: login.username ?? '',
                                 }}
                                 type="text"
                                 placeholder="E-mail"
+                                isError={!isEmailValid}
+                                errorText="Email not valid"
+                                blurHandler={() =>
+                                    !!email
+                                        ? setEmailValid(validateEmail(email))
+                                        : setEmailValid(true)
+                                }
+                                isRequired
                             />
                         </STYLE.ColumnWrapper>
 
@@ -55,6 +76,7 @@ export const LoginPage = () => {
                                 }}
                                 type="password"
                                 placeholder="Password"
+                                isRequired
                             />
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
