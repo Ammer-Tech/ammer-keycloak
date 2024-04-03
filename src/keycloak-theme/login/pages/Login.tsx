@@ -57,7 +57,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
     return (
         <STYLE.PageWrapper>
             <Header
-                buttonName="Become a Merchant"
+                buttonName="Sign Up"
                 onClick={() =>
                     (window.location = url.registrationUrl as Location | (string & Location))
                 }

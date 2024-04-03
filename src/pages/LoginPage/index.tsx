@@ -17,7 +17,7 @@ export const LoginPage = () => {
     return (
         <STYLE.PageWrapper>
             <Header
-                buttonName="Become a Merchant"
+                buttonName="Sign Up"
                 // onClick={() =>
                 //     (window.location = url.registrationUrl as Location | (string & Location))
                 // }
