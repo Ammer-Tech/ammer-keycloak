@@ -32,8 +32,6 @@ export const InputWrapper = styled.div<{
     border-radius: ${theme.borderRadiusSecondary};
 
     &:focus-within {
-        background-color: ${theme.colors.box13};
-
         border-color: ${({ isError }) => (isError ? theme.colors.red : theme.colors.black)};
     }
 
@@ -41,12 +39,12 @@ export const InputWrapper = styled.div<{
 
     cursor: text;
 
-    @media (hover: hover) {
+    /* @media (hover: hover) {
         &:hover {
             background-color: ${({ isFocused, isError, isDisabled }) =>
-                !isFocused && !isDisabled && (isError ? theme.colors.red25 : theme.colors.box13)};
+        !isFocused && !isDisabled && (isError ? theme.colors.red25 : theme.colors.box13)};
         }
-    }
+    } */
 `;
 
 export const Input = styled.input<{ withPadding: boolean }>`
@@ -74,6 +72,14 @@ export const Input = styled.input<{ withPadding: boolean }>`
         color: ${theme.colors.gray};
 
         cursor: not-allowed;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+        box-shadow: 0 0 0 30px ${theme.colors.background} inset !important;
+        transition: all 0s linear !important;
     }
 `;
 

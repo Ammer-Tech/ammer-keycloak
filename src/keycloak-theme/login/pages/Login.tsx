@@ -103,7 +103,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                                         ? setEmailValid(validateEmail(email))
                                         : setEmailValid(true)
                                 }
-                                isRequired
                             />
                         </STYLE.ColumnWrapper>
 
@@ -119,7 +118,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                                 }}
                                 type="password"
                                 placeholder="Password"
-                                isRequired
                             />
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>

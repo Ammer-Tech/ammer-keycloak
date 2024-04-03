@@ -57,7 +57,6 @@ export const LoginPage = () => {
                                         ? setEmailValid(validateEmail(email))
                                         : setEmailValid(true)
                                 }
-                                isRequired
                             />
                         </STYLE.ColumnWrapper>
 
@@ -73,7 +72,6 @@ export const LoginPage = () => {
                                 }}
                                 type="password"
                                 placeholder="Password"
-                                isRequired
                             />
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
