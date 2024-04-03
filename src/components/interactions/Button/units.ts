@@ -53,22 +53,22 @@ const ButtonBase = styled.button<T.IButton>`
 const primaryButtonStyle = css`
     color: ${theme.colors.white};
 
-    background-color: ${theme.colors.blackAmmerBg};
+    background-color: ${theme.colors.blackText};
 
     @media (hover: hover) {
         &:not(:disabled):hover {
-            background-color: #3a3a3a;
+            background-color: #353535;
         }
 
         &:not(:disabled):active {
-            background-color: #5a5a5a;
+            background-color: #353535;
         }
     }
 
     &:disabled {
         color: ${theme.colors.gray};
 
-        background-color: rgba(145, 145, 162, 0.17);
+        background-color: ${theme.colors.background};
     }
 `;
 
@@ -79,11 +79,11 @@ const secondaryButtonStyle = css`
 
     @media (hover: hover) {
         &:not(:disabled):hover {
-            background-color: ${theme.colors.box13};
+            background-color: #ededed;
         }
 
         &:not(:disabled):active {
-            background-color: ${theme.colors.background};
+            background-color: #ededed;
         }
     }
 

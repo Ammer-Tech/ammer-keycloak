@@ -158,9 +158,7 @@ export const RegisterPage = () => {
                     </STYLE.InputsWrapper>
 
                     <LoginS.ButtonsWrapper>
-                        <Button styleScheme="secondary" disabled={conditionForButtonDisabled}>
-                            Sign Up
-                        </Button>
+                        <Button disabled={conditionForButtonDisabled}>Sign Up</Button>
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>

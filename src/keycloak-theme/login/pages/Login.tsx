@@ -124,7 +124,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
                     <LoginS.ButtonsWrapper>
                         <Button
-                            styleScheme="secondary"
                             isLoading={isLoginButtonDisabled}
                             disabled={!email || !password || isLoginButtonDisabled || !isEmailValid}
                         >

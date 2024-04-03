@@ -32,7 +32,13 @@ export default function Register(
     const [isPasswordsMatch, setPasswordsMatch] = useState(true);
 
     const conditionForButtonDisabled =
-        !firstName || !lastName || !email || !password || !confirmPassword || !isEmailValid;
+        !firstName ||
+        !lastName ||
+        !email ||
+        !password ||
+        !confirmPassword ||
+        !isEmailValid ||
+        !isPasswordsMatch;
 
     // const { msg, msgStr } = i18n;
 
@@ -175,9 +181,7 @@ export default function Register(
                     </STYLE.InputsWrapper>
 
                     <LoginS.ButtonsWrapper>
-                        <Button styleScheme="secondary" disabled={conditionForButtonDisabled}>
-                            Sign Up
-                        </Button>
+                        <Button disabled={conditionForButtonDisabled}>Sign Up</Button>
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>

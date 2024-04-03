@@ -77,12 +77,7 @@ export const LoginPage = () => {
                     </STYLE.InputsWrapper>
 
                     <LoginS.ButtonsWrapper>
-                        <Button
-                            styleScheme="secondary"
-                            disabled={!email || !password || !isEmailValid}
-                        >
-                            Continue
-                        </Button>
+                        <Button disabled={!email || !password || !isEmailValid}>Continue</Button>
 
                         {/* <STYLE.Link href="/">Forgot your password?</STYLE.Link> */}
                     </LoginS.ButtonsWrapper>
