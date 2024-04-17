@@ -35,13 +35,13 @@ export const RegisterPage = () => {
 
             <STYLE.PageContent>
                 <Form
-                    padding="64px 76px 42px"
-                    maxWidth="550px"
+                    padding="60px 80px 40px"
+                    maxWidth="558px"
                     id="kc-register-form"
                     // action={url.registrationAction}
                     method="post"
                 >
-                    <STYLE.ColumnWrapper>
+                    <STYLE.ColumnWrapper gap={0}>
                         <STYLE.Title>Sign Up</STYLE.Title>
 
                         <STYLE.FlexAlignCenterWrapper gap={12}>

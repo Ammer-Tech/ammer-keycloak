@@ -6,5 +6,5 @@ export const ButtonsWrapper = styled(STYLE.FlexAlignCenterWrapper)`
     gap: 28px;
 
     width: 100%;
-    margin-top: 82px;
+    margin-top: 80px;
 `;

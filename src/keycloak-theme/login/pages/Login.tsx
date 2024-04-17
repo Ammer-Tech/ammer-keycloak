@@ -65,8 +65,8 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
             <STYLE.PageContent>
                 <Form
-                    padding="64px 76px 42px"
-                    maxWidth="550px"
+                    padding="60px 80px 40px"
+                    maxWidth="558px"
                     onSubmit={onSubmit}
                     action={url.loginAction}
                     method="post"

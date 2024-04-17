@@ -24,8 +24,8 @@ export const LoginPage = () => {
             />
 
             <STYLE.PageContent>
-                <Form padding="64px 76px 42px" maxWidth="550px">
-                    <STYLE.ColumnWrapper>
+                <Form padding="60px 80px 40px" maxWidth="558px">
+                    <STYLE.ColumnWrapper gap={0}>
                         <STYLE.Title>Log In</STYLE.Title>
 
                         <STYLE.FlexAlignCenterWrapper gap={12}>

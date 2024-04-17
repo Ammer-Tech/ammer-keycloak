@@ -94,6 +94,6 @@ export const InputTitle = styled.p`
 `;
 
 export const InputsWrapper = styled(ColumnWrapper)`
-    gap: 28px;
-    margin-top: 60px;
+    gap: 26px;
+    margin-top: 48px;
 `;
