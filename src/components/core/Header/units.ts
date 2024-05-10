@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { Button } from 'components/interactions';
 
-import { theme } from 'styles';
+import { theme, toEnd } from 'styles';
 
 import { ReactComponent as LogoSVG } from './images/logo.svg';
 
@@ -21,13 +21,19 @@ export const Wrapper = styled.div`
     padding: 0 40px 0 66px;
 
     background-color: ${theme.colors.white};
+
+    ${toEnd('mobile')} {
+        padding: 0 32px;
+    }
 `;
 
 export const Logo = styled(LogoSVG)`
-    width: 162px;
-    height: 34px;
+    width: 100%;
     min-width: 162px;
-    min-height: 34px;
+
+    ${toEnd('mobile')} {
+        min-width: 140px;
+    }
 `;
 
 export const ButtonStyled = styled(Button)`

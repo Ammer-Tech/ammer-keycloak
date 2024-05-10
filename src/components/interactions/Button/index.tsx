@@ -2,12 +2,16 @@ import React, { FC } from 'react';
 
 import { Loader } from 'components/core';
 
+import { useDeviceType } from 'hooks';
+
 import * as T from './types';
 import * as S from './units';
 
 export const Button: FC<T.IButton> = (props) => {
+    const { isMobile } = useDeviceType();
+
     return (
-        <S.Button size={props.size || 'medium'} {...props}>
+        <S.Button size={isMobile ? 'small' : props.size || 'medium'} {...props}>
             {props.isLoading ? (
                 <Loader size={props.loaderSize || (props.styleScheme === 'square' ? 16 : 20)} />
             ) : (

@@ -4,6 +4,7 @@ import { Form } from 'components/containers';
 import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
 
+import { useDeviceType } from 'hooks';
 import * as STYLE from 'styles';
 import * as LoginS from 'styles/loginPage';
 import { validateEmail } from 'utils';
@@ -18,6 +19,8 @@ export const RegisterPage = () => {
     const [isEmailValid, setEmailValid] = useState(true);
 
     const [isPasswordsMatch, setPasswordsMatch] = useState(true);
+
+    const { isMobile } = useDeviceType();
 
     // const isPasswordsMatch = password === confirmPassword;
 
@@ -35,20 +38,22 @@ export const RegisterPage = () => {
 
             <STYLE.PageContent>
                 <Form
-                    padding="60px 80px 40px"
+                    padding={isMobile ? '40px 32px' : '60px 80px 40px'}
                     maxWidth="558px"
                     id="kc-register-form"
                     // action={url.registrationAction}
                     method="post"
                 >
-                    <STYLE.ColumnWrapper gap={0}>
+                    <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
                         <STYLE.Title>Sign Up</STYLE.Title>
 
-                        <STYLE.FlexAlignCenterWrapper gap={12}>
-                            <STYLE.TextGray>Already have an account?</STYLE.TextGray>
+                        {!isMobile && (
+                            <LoginS.SignUpWrapper>
+                                <STYLE.TextGray>Already have an account?</STYLE.TextGray>
 
-                            <STYLE.Link href="/">Log In</STYLE.Link>
-                        </STYLE.FlexAlignCenterWrapper>
+                                <STYLE.Link href="/">Log In</STYLE.Link>
+                            </LoginS.SignUpWrapper>
+                        )}
                     </STYLE.ColumnWrapper>
 
                     <STYLE.InputsWrapper>

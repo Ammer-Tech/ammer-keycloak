@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { theme } from './const';
+import { toEnd } from './media';
 
 export const PageWrapper = styled.div`
     position: relative;
@@ -28,6 +29,10 @@ export const PageContent = styled.div`
     padding: 32px 0;
 
     overflow: hidden;
+
+    ${toEnd('mobile')} {
+        padding: 32px 16px;
+    }
 `;
 
 export const ColumnWrapper = styled.div<{ gap?: number; fullWidth?: boolean }>`
@@ -83,6 +88,11 @@ export const Title = styled.h1`
     font-size: ${theme.text.extraHuge.fontSize};
     font-weight: ${theme.text.extraHuge.fontWeight};
     line-height: 40.5px;
+
+    ${toEnd('mobile')} {
+        font-size: ${theme.text.huge.fontSize};
+        line-height: 158%;
+    }
 `;
 
 export const InputTitle = styled.p`
@@ -96,4 +106,8 @@ export const InputTitle = styled.p`
 export const InputsWrapper = styled(ColumnWrapper)`
     gap: 26px;
     margin-top: 48px;
+
+    ${toEnd('mobile')} {
+        margin-top: 40px;
+    }
 `;
