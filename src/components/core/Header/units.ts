@@ -28,10 +28,11 @@ export const Wrapper = styled.div`
 `;
 
 export const Logo = styled(LogoSVG)`
-    width: 100%;
+    width: 162px;
     min-width: 162px;
 
     ${toEnd('mobile')} {
+        width: 140px;
         min-width: 140px;
     }
 `;
