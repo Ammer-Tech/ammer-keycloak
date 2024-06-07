@@ -17,5 +17,5 @@ export interface IInput {
     blurHandler?: (value: FocusEvent<HTMLInputElement>) => void;
     focusHandler?: (value: FocusEvent<HTMLInputElement>) => void;
     onChange?: (value: ChangeEvent<HTMLInputElement>) => void;
-    onChangeHelpFunc?: VoidFunction;
+    helpFuncForOnChange?: VoidFunction;
 }

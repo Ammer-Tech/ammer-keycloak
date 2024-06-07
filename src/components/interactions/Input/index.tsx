@@ -53,7 +53,7 @@ export const Input = forwardRef<HTMLInputElement, T.IInput>((props, ref) => {
                     type={props.type}
                     value={props.value}
                     onChange={(e) => {
-                        !!props.onChangeHelpFunc && props.onChangeHelpFunc();
+                        !!props.helpFuncForOnChange && props.helpFuncForOnChange();
 
                         !!props.onChange
                             ? props.onChange(e)

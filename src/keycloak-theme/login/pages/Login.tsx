@@ -95,7 +95,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                             <Input
                                 value={email}
                                 setValue={setEmail}
-                                onChangeHelpFunc={() => setEmailValid(true)}
+                                helpFuncForOnChange={() => setEmailValid(true)}
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',

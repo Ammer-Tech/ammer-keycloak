@@ -47,7 +47,7 @@ export const LoginPage = () => {
                             <Input
                                 value={email}
                                 setValue={setEmail}
-                                onChangeHelpFunc={() => setEmailValid(true)}
+                                helpFuncForOnChange={() => setEmailValid(true)}
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',

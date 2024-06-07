@@ -9,7 +9,7 @@ import { Button, Input } from 'components/interactions';
 import { useDeviceType } from 'hooks';
 import * as STYLE from 'styles';
 import * as LoginS from 'styles/loginPage';
-import { validateEmail } from 'utils';
+import { validateEmail, validatePassword } from 'utils';
 
 import type { I18n } from '../i18n';
 import type { KcContext } from '../kcContext';
@@ -17,8 +17,7 @@ import type { KcContext } from '../kcContext';
 export default function Register(
     props: PageProps<Extract<KcContext, { pageId: 'register.ftl' }>, I18n>,
 ) {
-    // @ts-ignore
-    const { kcContext, i18n } = props;
+    const { kcContext } = props;
 
     const { url, register, message } = kcContext;
 
@@ -29,6 +28,7 @@ export default function Register(
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const [isEmailValid, setEmailValid] = useState(true);
+    const [isPasswordValid, setPasswordValid] = useState(true);
 
     const [isPasswordsMatch, setPasswordsMatch] = useState(true);
 
@@ -41,7 +41,8 @@ export default function Register(
         !password ||
         !confirmPassword ||
         !isEmailValid ||
-        !isPasswordsMatch;
+        !isPasswordsMatch ||
+        !isPasswordValid;
 
     // const { msg, msgStr } = i18n;
 
@@ -122,7 +123,7 @@ export default function Register(
                             <Input
                                 value={email}
                                 setValue={setEmail}
-                                onChangeHelpFunc={() => setEmailValid(true)}
+                                helpFuncForOnChange={() => setEmailValid(true)}
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',
@@ -147,6 +148,7 @@ export default function Register(
                             <Input
                                 value={password}
                                 setValue={setPassword}
+                                helpFuncForOnChange={() => setPasswordValid(true)}
                                 inputProps={{
                                     id: 'password',
                                     name: 'password',
@@ -154,6 +156,13 @@ export default function Register(
                                 }}
                                 type="password"
                                 placeholder="Password"
+                                isError={!isPasswordValid}
+                                errorText="Password not valid: min 8, a-z, A-Z, 0-9 and one special symbol"
+                                blurHandler={() =>
+                                    !!password
+                                        ? setPasswordValid(validatePassword(password))
+                                        : setPasswordValid(true)
+                                }
                                 isRequired
                             />
                         </STYLE.ColumnWrapper>
