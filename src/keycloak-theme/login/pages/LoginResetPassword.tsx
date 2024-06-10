@@ -5,6 +5,7 @@ import { Form, notification, NotificationRoot } from 'components/containers';
 import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
 
+import { useDeviceType } from 'hooks';
 import * as STYLE from 'styles';
 import * as LoginS from 'styles/loginPage';
 import { validateEmail } from 'utils';
@@ -15,12 +16,13 @@ import type { KcContext } from '../kcContext';
 export default function LoginResetPassword(
     props: PageProps<Extract<KcContext, { pageId: 'login-reset-password.ftl' }>, I18n>,
 ) {
-    // @ts-ignore
-    const { kcContext, i18n } = props;
+    const { kcContext } = props;
     const { url, message } = kcContext;
 
     const [email, setEmail] = useState('');
     const [isEmailValid, setEmailValid] = useState(true);
+
+    const { isMobile } = useDeviceType();
 
     useEffect(() => {
         // @ts-ignore
@@ -48,8 +50,18 @@ export default function LoginResetPassword(
                     action={url.loginResetCredentialsUrl}
                     method="post"
                 >
-                    <STYLE.ColumnWrapper>
+                    <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
                         <STYLE.Title>Reset Password</STYLE.Title>
+
+                        {!isMobile && (
+                            <LoginS.SignUpWrapper>
+                                <LoginS.SignUpWrapper>
+                                    <STYLE.TextGray>Remember the password?</STYLE.TextGray>
+
+                                    <STYLE.Link href={url.loginUrl}>Log In</STYLE.Link>
+                                </LoginS.SignUpWrapper>
+                            </LoginS.SignUpWrapper>
+                        )}
                     </STYLE.ColumnWrapper>
 
                     <STYLE.InputsWrapper>
