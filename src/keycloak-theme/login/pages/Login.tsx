@@ -137,11 +137,11 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                             Continue
                         </Button>
 
-                        {/* {realm.resetPasswordAllowed && (
+                        {realm.resetPasswordAllowed && (
                             <STYLE.Link href={url.loginResetCredentialsUrl}>
                                 Forgot your password?
                             </STYLE.Link>
-                        )} */}
+                        )}
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>

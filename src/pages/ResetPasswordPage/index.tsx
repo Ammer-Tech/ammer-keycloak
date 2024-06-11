@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import type { PageProps } from 'keycloakify/login/pages/PageProps';
+import React, { useState } from 'react';
 
-import { Form, notification, NotificationRoot } from 'components/containers';
+import { Form } from 'components/containers';
 import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
 
@@ -10,26 +9,11 @@ import * as STYLE from 'styles';
 import * as LoginS from 'styles/loginPage';
 import { validateEmail } from 'utils';
 
-import type { I18n } from '../i18n';
-import type { KcContext } from '../kcContext';
-
-export default function LoginResetPassword(
-    props: PageProps<Extract<KcContext, { pageId: 'login-reset-password.ftl' }>, I18n>,
-) {
-    const { kcContext } = props;
-    const { url, message } = kcContext;
-
+export const ResetPasswordPage = () => {
     const [email, setEmail] = useState('');
     const [isEmailValid, setEmailValid] = useState(true);
 
     const { isMobile } = useDeviceType();
-
-    useEffect(() => {
-        // @ts-ignore
-        if (!!message?.error) {
-            notification.error(message.summary);
-        }
-    }, [message]);
 
     const onSubmit = (e: any) => {
         e.preventDefault();
@@ -40,15 +24,14 @@ export default function LoginResetPassword(
         <STYLE.PageWrapper>
             <Header
                 buttonName="Back to Login"
-                onClick={() => (window.location = url.loginUrl as Location | (string & Location))}
+                // onClick={() => (window.location = url.loginUrl as Location | (string & Location))}
             />
-
             <STYLE.PageContent>
                 <Form
                     padding="64px 76px 42px"
                     maxWidth="550px"
                     onSubmit={onSubmit}
-                    action={url.loginResetCredentialsUrl}
+                    // action={url.loginResetCredentialsUrl}
                     method="post"
                 >
                     <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
@@ -59,7 +42,7 @@ export default function LoginResetPassword(
                                 <LoginS.SignUpWrapper>
                                     <STYLE.TextGray>Remember the password?</STYLE.TextGray>
 
-                                    <STYLE.Link href={url.loginUrl}>Log In</STYLE.Link>
+                                    <STYLE.Link href={'/'}>Log In</STYLE.Link>
                                 </LoginS.SignUpWrapper>
                             </LoginS.SignUpWrapper>
                         )}
@@ -100,8 +83,6 @@ export default function LoginResetPassword(
             </STYLE.PageContent>
 
             <Footer />
-
-            <NotificationRoot />
         </STYLE.PageWrapper>
     );
-}
+};
