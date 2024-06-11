@@ -131,6 +131,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
                     <LoginS.ButtonsWrapper>
                         <Button
+                            maxWidth={isMobile ? '100%' : '158px'}
                             isLoading={isLoginButtonDisabled}
                             disabled={!email || !password || isLoginButtonDisabled || !isEmailValid}
                         >
