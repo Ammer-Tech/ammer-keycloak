@@ -21,10 +21,8 @@ if (my_custom_param !== null) {
 }
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: 'login.ftl' }>, I18n>) {
-    // @ts-ignore
-    const { kcContext, i18n } = props;
+    const { kcContext } = props;
 
-    // @ts-ignore
     const { realm, url, login, message } = kcContext;
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
@@ -37,9 +35,12 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
     const { isMobile } = useDeviceType();
 
     useEffect(() => {
-        // @ts-ignore
-        if (!!message?.error) {
+        if (message?.type === 'error') {
             notification.error('Invalid username or password');
+        } else if (message?.type === 'success') {
+            notification.success(message.summary);
+        } else if (message?.type === 'warning') {
+            notification.warn(message.summary);
         }
     }, [message]);
 
@@ -70,6 +71,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                 <Form
                     padding={isMobile ? '40px 32px' : '60px 80px 40px'}
                     maxWidth="558px"
+                    id="kc-form-login"
                     onSubmit={onSubmit}
                     action={url.loginAction}
                     method="post"

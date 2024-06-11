@@ -25,16 +25,14 @@ export default function LoginResetPassword(
     const { isMobile } = useDeviceType();
 
     useEffect(() => {
-        // @ts-ignore
-        if (!!message?.error) {
+        if (message?.type === 'error') {
             notification.error(message.summary);
+        } else if (message?.type === 'success') {
+            notification.success(message.summary);
+        } else if (message?.type === 'warning') {
+            notification.warn(message.summary);
         }
     }, [message]);
-
-    const onSubmit = (e: any) => {
-        e.preventDefault();
-        // Logic to handle password reset request
-    };
 
     return (
         <STYLE.PageWrapper>
@@ -47,8 +45,8 @@ export default function LoginResetPassword(
                 <Form
                     padding="64px 76px 42px"
                     maxWidth="550px"
-                    onSubmit={onSubmit}
-                    action={url.loginResetCredentialsUrl}
+                    id="kc-reset-password-form"
+                    action={url.loginAction}
                     method="post"
                 >
                     <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
@@ -74,8 +72,8 @@ export default function LoginResetPassword(
                                 setValue={setEmail}
                                 helpFuncForOnChange={() => setEmailValid(true)}
                                 inputProps={{
-                                    name: 'email',
-                                    header: 'E-mail',
+                                    id: 'username',
+                                    name: 'username',
                                 }}
                                 type="text"
                                 placeholder="E-mail"
@@ -92,7 +90,11 @@ export default function LoginResetPassword(
                     </STYLE.InputsWrapper>
 
                     <LoginS.ButtonsWrapper>
-                        <Button styleScheme="secondary" disabled={!email || !isEmailValid}>
+                        <Button
+                            type="submit"
+                            styleScheme="secondary"
+                            disabled={!email || !isEmailValid}
+                        >
                             Reset Password
                         </Button>
                     </LoginS.ButtonsWrapper>

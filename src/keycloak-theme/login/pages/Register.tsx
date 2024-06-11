@@ -44,12 +44,13 @@ export default function Register(
         !isPasswordsMatch ||
         !isPasswordValid;
 
-    // const { msg, msgStr } = i18n;
-
     useEffect(() => {
-        // @ts-ignore
-        if (!!message?.error) {
+        if (message?.type === 'error') {
             notification.error(message.summary);
+        } else if (message?.type === 'success') {
+            notification.success(message.summary);
+        } else if (message?.type === 'warning') {
+            notification.warn(message.summary);
         }
     }, [message]);
 
