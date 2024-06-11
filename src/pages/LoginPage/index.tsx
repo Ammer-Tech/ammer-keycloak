@@ -82,9 +82,14 @@ export const LoginPage = () => {
                     </STYLE.InputsWrapper>
 
                     <LoginS.ButtonsWrapper>
-                        <Button disabled={!email || !password || !isEmailValid}>Continue</Button>
+                        <Button
+                            maxWidth={isMobile ? '100%' : '158px'}
+                            disabled={!email || !password || !isEmailValid}
+                        >
+                            Continue
+                        </Button>
 
-                        {/* <STYLE.Link href="/">Forgot your password?</STYLE.Link> */}
+                        <STYLE.Link href="/">Forgot your password?</STYLE.Link>
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>

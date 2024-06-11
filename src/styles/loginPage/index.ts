@@ -9,6 +9,7 @@ export const ButtonsWrapper = styled(FlexAlignCenterWrapper)`
     margin-top: 80px;
 
     ${toEnd('mobile')} {
+        flex-direction: column;
         margin-top: 40px;
     }
 `;
