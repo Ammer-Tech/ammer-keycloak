@@ -30,6 +30,9 @@ export const { getKcContext } = createGetKcContext<KcContextExtension>({
             pageId: 'login-reset-password.ftl',
         },
         {
+            pageId: 'login-update-password.ftl',
+        },
+        {
             pageId: 'register.ftl',
             authorizedMailDomains: [
                 'example.com',

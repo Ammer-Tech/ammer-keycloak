@@ -27,7 +27,14 @@ export const LoginPage = () => {
             />
 
             <STYLE.PageContent>
-                <Form padding={isMobile ? '40px 32px' : '60px 80px 40px'} maxWidth="558px">
+                <Form
+                    padding={isMobile ? '40px 32px' : '60px 80px 40px'}
+                    maxWidth="558px"
+                    id="kc-form-login"
+                    // onSubmit={onSubmit}
+                    // action={url.loginAction}
+                    method="post"
+                >
                     <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
                         <STYLE.Title>Log In</STYLE.Title>
 
@@ -35,7 +42,12 @@ export const LoginPage = () => {
                             <LoginS.SignUpWrapper>
                                 <STYLE.TextGray>Don’t have an account?</STYLE.TextGray>
 
-                                <STYLE.Link href="/">Become a Merchant</STYLE.Link>
+                                <STYLE.Link
+                                    href="/"
+                                    // href={url.registrationUrl}
+                                >
+                                    Become a Merchant
+                                </STYLE.Link>
                             </LoginS.SignUpWrapper>
                         )}
                     </STYLE.ColumnWrapper>
@@ -51,6 +63,7 @@ export const LoginPage = () => {
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',
+                                    defaultValue: '',
                                     // defaultValue: login.username ?? '',
                                 }}
                                 type="text"
@@ -84,17 +97,27 @@ export const LoginPage = () => {
                     <LoginS.ButtonsWrapper>
                         <Button
                             maxWidth={isMobile ? '100%' : '158px'}
-                            disabled={!email || !password || !isEmailValid}
+                            // isLoading={isLoginButtonDisabled}
+                            // disabled={!email || !password || isLoginButtonDisabled || !isEmailValid}
                         >
                             Continue
                         </Button>
 
-                        <STYLE.Link href="/">Forgot your password?</STYLE.Link>
+                        {/* {realm.resetPasswordAllowed && ( */}
+                        <STYLE.Link
+                            href="/"
+                            // href={url.loginResetCredentialsUrl}
+                        >
+                            Forgot your password?
+                        </STYLE.Link>
+                        {/* )} */}
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>
 
             <Footer />
+
+            {/* <NotificationRoot /> */}
         </STYLE.PageWrapper>
     );
 };

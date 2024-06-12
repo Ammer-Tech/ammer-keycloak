@@ -15,23 +15,19 @@ export const ResetPasswordPage = () => {
 
     const { isMobile } = useDeviceType();
 
-    const onSubmit = (e: any) => {
-        e.preventDefault();
-        // Logic to handle password reset request
-    };
-
     return (
         <STYLE.PageWrapper>
             <Header
                 buttonName="Back to Login"
                 // onClick={() => (window.location = url.loginUrl as Location | (string & Location))}
             />
+
             <STYLE.PageContent>
                 <Form
                     padding="64px 76px 42px"
                     maxWidth="550px"
-                    onSubmit={onSubmit}
-                    // action={url.loginResetCredentialsUrl}
+                    id="kc-reset-password-form"
+                    // action={url.loginAction}
                     method="post"
                 >
                     <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
@@ -39,11 +35,14 @@ export const ResetPasswordPage = () => {
 
                         {!isMobile && (
                             <LoginS.SignUpWrapper>
-                                <LoginS.SignUpWrapper>
-                                    <STYLE.TextGray>Remember the password?</STYLE.TextGray>
+                                <STYLE.TextGray>Remember the password?</STYLE.TextGray>
 
-                                    <STYLE.Link href={'/'}>Log In</STYLE.Link>
-                                </LoginS.SignUpWrapper>
+                                <STYLE.Link
+                                    href="/"
+                                    // href={url.loginUrl}
+                                >
+                                    Log In
+                                </STYLE.Link>
                             </LoginS.SignUpWrapper>
                         )}
                     </STYLE.ColumnWrapper>
@@ -57,8 +56,8 @@ export const ResetPasswordPage = () => {
                                 setValue={setEmail}
                                 helpFuncForOnChange={() => setEmailValid(true)}
                                 inputProps={{
-                                    name: 'email',
-                                    header: 'E-mail',
+                                    id: 'username',
+                                    name: 'username',
                                 }}
                                 type="text"
                                 placeholder="E-mail"
@@ -75,7 +74,11 @@ export const ResetPasswordPage = () => {
                     </STYLE.InputsWrapper>
 
                     <LoginS.ButtonsWrapper>
-                        <Button styleScheme="secondary" disabled={!email || !isEmailValid}>
+                        <Button
+                            type="submit"
+                            styleScheme="secondary"
+                            disabled={!email || !isEmailValid}
+                        >
                             Reset Password
                         </Button>
                     </LoginS.ButtonsWrapper>
@@ -83,6 +86,8 @@ export const ResetPasswordPage = () => {
             </STYLE.PageContent>
 
             <Footer />
+
+            {/* <NotificationRoot /> */}
         </STYLE.PageWrapper>
     );
 };

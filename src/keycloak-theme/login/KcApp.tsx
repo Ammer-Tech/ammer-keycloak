@@ -10,6 +10,7 @@ import Template from './Template';
 const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const LoginResetPassword = lazy(() => import('./pages/LoginResetPassword'));
+const LoginUpdatePassword = lazy(() => import('./pages/LoginUpdatePassword'));
 const Info = lazy(() => import('keycloakify/login/pages/Info'));
 
 // This is like adding classes to theme.properties
@@ -58,6 +59,13 @@ export default function KcApp(props: { kcContext: KcContext }) {
                     case 'login-reset-password.ftl':
                         return (
                             <LoginResetPassword
+                                {...{ kcContext, i18n, Template, classes }}
+                                doUseDefaultCss={true}
+                            />
+                        );
+                    case 'login-update-password.ftl':
+                        return (
+                            <LoginUpdatePassword
                                 {...{ kcContext, i18n, Template, classes }}
                                 doUseDefaultCss={true}
                             />

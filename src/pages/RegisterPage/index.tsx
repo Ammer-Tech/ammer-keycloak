@@ -58,7 +58,12 @@ export const RegisterPage = () => {
                             <LoginS.SignUpWrapper>
                                 <STYLE.TextGray>Already have an account?</STYLE.TextGray>
 
-                                <STYLE.Link href="/">Log In</STYLE.Link>
+                                <STYLE.Link
+                                    href="/"
+                                    // href={url.loginUrl}
+                                >
+                                    Log In
+                                </STYLE.Link>
                             </LoginS.SignUpWrapper>
                         )}
                     </STYLE.ColumnWrapper>
@@ -74,6 +79,7 @@ export const RegisterPage = () => {
                                     id: 'firstName',
                                     name: 'firstName',
                                     header: 'First Name',
+                                    defaultValue: '',
                                     // defaultValue: register.formData.firstName ?? '',
                                 }}
                                 type="text"
@@ -92,6 +98,7 @@ export const RegisterPage = () => {
                                     id: 'lastName',
                                     name: 'lastName',
                                     header: 'Last Name',
+                                    defaultValue: '',
                                     // defaultValue: register.formData.lastName ?? '',
                                 }}
                                 type="text"
@@ -110,6 +117,7 @@ export const RegisterPage = () => {
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',
+                                    defaultValue: '',
                                     // defaultValue: register.formData.email ?? '',
                                 }}
                                 type="text"
@@ -184,6 +192,8 @@ export const RegisterPage = () => {
             </STYLE.PageContent>
 
             <Footer />
+
+            {/* <NotificationRoot /> */}
         </STYLE.PageWrapper>
     );
 };

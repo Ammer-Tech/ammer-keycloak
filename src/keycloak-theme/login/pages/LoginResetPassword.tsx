@@ -54,11 +54,9 @@ export default function LoginResetPassword(
 
                         {!isMobile && (
                             <LoginS.SignUpWrapper>
-                                <LoginS.SignUpWrapper>
-                                    <STYLE.TextGray>Remember the password?</STYLE.TextGray>
+                                <STYLE.TextGray>Remember the password?</STYLE.TextGray>
 
-                                    <STYLE.Link href={url.loginUrl}>Log In</STYLE.Link>
-                                </LoginS.SignUpWrapper>
+                                <STYLE.Link href={url.loginUrl}>Log In</STYLE.Link>
                             </LoginS.SignUpWrapper>
                         )}
                     </STYLE.ColumnWrapper>

@@ -32,6 +32,8 @@ export const NavigationRouter = observer(() => {
 
                     <Route path={C.RESET_PASSWORD_PAGE} element={<PAGES.ResetPasswordPage />} />
 
+                    <Route path={C.UPDATE_PASSWORD_PAGE} element={<PAGES.UpdatePasswordPage />} />
+
                     <Route path="*" element={<PAGES.LoginPage />} />
                 </Routes>
             </S.MainWrapper>
