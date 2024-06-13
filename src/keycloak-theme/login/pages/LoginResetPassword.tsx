@@ -88,11 +88,7 @@ export default function LoginResetPassword(
                     </STYLE.InputsWrapper>
 
                     <LoginS.ButtonsWrapper>
-                        <Button
-                            type="submit"
-                            styleScheme="secondary"
-                            disabled={!email || !isEmailValid}
-                        >
+                        <Button type="submit" disabled={!email || !validateEmail(email)}>
                             Reset Password
                         </Button>
                     </LoginS.ButtonsWrapper>

@@ -28,7 +28,10 @@ export default function LoginUpdatePassword(
     const { isMobile } = useDeviceType();
 
     const conditionForButtonDisabled =
-        !password || !confirmPassword || !isPasswordValid || !isPasswordsMatch;
+        !password ||
+        !confirmPassword ||
+        !validatePassword(password) ||
+        !(password === confirmPassword);
 
     useEffect(() => {
         if (message?.type === 'error') {
@@ -77,11 +80,13 @@ export default function LoginUpdatePassword(
                                 placeholder="Password"
                                 isError={!isPasswordValid}
                                 errorText="Password not valid: min 8, a-z, A-Z, 0-9 and one special symbol"
-                                blurHandler={() =>
+                                blurHandler={() => {
                                     !!password
                                         ? setPasswordValid(validatePassword(password))
-                                        : setPasswordValid(true)
-                                }
+                                        : setPasswordValid(true);
+
+                                    setPasswordsMatch(password === confirmPassword);
+                                }}
                                 isRequired
                             />
                         </STYLE.ColumnWrapper>
@@ -114,11 +119,7 @@ export default function LoginUpdatePassword(
                     </STYLE.InputsWrapper>
 
                     <LoginS.ButtonsWrapper>
-                        <Button
-                            type="submit"
-                            styleScheme="secondary"
-                            disabled={conditionForButtonDisabled}
-                        >
+                        <Button type="submit" disabled={conditionForButtonDisabled}>
                             Update Password
                         </Button>
                     </LoginS.ButtonsWrapper>

@@ -19,7 +19,10 @@ export const UpdatePasswordPage = () => {
     const { isMobile } = useDeviceType();
 
     const conditionForButtonDisabled =
-        !password || !confirmPassword || !isPasswordValid || !isPasswordsMatch;
+        !password ||
+        !confirmPassword ||
+        !validatePassword(password) ||
+        !(password === confirmPassword);
 
     return (
         <STYLE.PageWrapper>
@@ -57,11 +60,13 @@ export const UpdatePasswordPage = () => {
                                 placeholder="New Password"
                                 isError={!isPasswordValid}
                                 errorText="Password not valid: min 8, a-z, A-Z, 0-9 and one special symbol"
-                                blurHandler={() =>
+                                blurHandler={() => {
                                     !!password
                                         ? setPasswordValid(validatePassword(password))
-                                        : setPasswordValid(true)
-                                }
+                                        : setPasswordValid(true);
+
+                                    setPasswordsMatch(password === confirmPassword);
+                                }}
                                 isRequired
                             />
                         </STYLE.ColumnWrapper>
@@ -94,11 +99,7 @@ export const UpdatePasswordPage = () => {
                     </STYLE.InputsWrapper>
 
                     <LoginS.ButtonsWrapper>
-                        <Button
-                            type="submit"
-                            styleScheme="secondary"
-                            disabled={conditionForButtonDisabled}
-                        >
+                        <Button type="submit" disabled={conditionForButtonDisabled}>
                             Update Password
                         </Button>
                     </LoginS.ButtonsWrapper>

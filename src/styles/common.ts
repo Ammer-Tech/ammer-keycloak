@@ -79,6 +79,8 @@ export const TextGray = styled.p`
 `;
 
 export const Link = styled.a`
+    width: fit-content;
+
     font-size: ${theme.text.normal.fontSize};
     font-weight: ${theme.text.extraHuge.fontWeight};
     line-height: 23.2px;
