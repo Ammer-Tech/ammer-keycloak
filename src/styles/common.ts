@@ -64,6 +64,12 @@ export const FlexBetweenWrapper = styled.div<{ gap?: number; fullWidth?: boolean
     width: ${({ fullWidth }) => fullWidth && '100%'};
 `;
 
+export const Text = styled.p`
+    font-size: ${theme.text.normal.fontSize};
+    font-weight: ${theme.text.extraHuge.fontWeight};
+    line-height: 23.2px;
+`;
+
 export const TextGray = styled.p`
     font-size: ${theme.text.normal.fontSize};
     font-weight: ${theme.text.extraHuge.fontWeight};
