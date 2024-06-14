@@ -40,9 +40,9 @@ export default function Register(
         !email ||
         !password ||
         !confirmPassword ||
-        !isEmailValid ||
-        !isPasswordsMatch ||
-        !isPasswordValid;
+        !validateEmail(email) ||
+        !validatePassword(password) ||
+        !(password === confirmPassword);
 
     useEffect(() => {
         if (message?.type === 'error') {

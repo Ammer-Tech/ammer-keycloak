@@ -33,7 +33,9 @@ export default function LoginVerifyEmail(
         <STYLE.PageWrapper>
             <Header
                 buttonName="Back to Login"
-                onClick={() => (window.location = url.loginUrl as Location | (string & Location))}
+                onClick={() =>
+                    (window.location = url.loginRestartFlowUrl as Location | (string & Location))
+                }
             />
 
             <STYLE.PageContent>

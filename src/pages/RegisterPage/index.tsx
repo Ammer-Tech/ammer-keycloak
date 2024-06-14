@@ -23,16 +23,15 @@ export const RegisterPage = () => {
 
     const { isMobile } = useDeviceType();
 
-    // const isPasswordsMatch = password === confirmPassword;
-
     const conditionForButtonDisabled =
         !firstName ||
         !lastName ||
         !email ||
         !password ||
         !confirmPassword ||
-        !isEmailValid ||
-        !isPasswordValid;
+        !validateEmail(email) ||
+        !validatePassword(password) ||
+        !(password === confirmPassword);
 
     return (
         <STYLE.PageWrapper>
