@@ -1,5 +1,5 @@
 export interface IHeader {
-    buttonName: string;
+    buttonName?: string;
 
     onClick?: VoidFunction;
 }

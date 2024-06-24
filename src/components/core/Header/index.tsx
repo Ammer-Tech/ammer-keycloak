@@ -8,9 +8,11 @@ export const Header: FC<T.IHeader> = (props) => {
         <S.Wrapper>
             <S.Logo />
 
-            <S.ButtonStyled size="small" onClick={props.onClick}>
-                {props.buttonName}
-            </S.ButtonStyled>
+            {!!props.buttonName && (
+                <S.ButtonStyled size="small" onClick={props.onClick}>
+                    {props.buttonName}
+                </S.ButtonStyled>
+            )}
         </S.Wrapper>
     );
 };
