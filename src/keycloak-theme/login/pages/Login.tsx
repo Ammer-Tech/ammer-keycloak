@@ -14,6 +14,9 @@ import { validateEmail } from 'utils';
 import type { I18n } from '../i18n';
 import type { KcContext } from '../kcContext';
 
+import apple from 'images/apple.png';
+import google from 'images/google.png';
+
 const my_custom_param = new URL(window.location.href).searchParams.get('my_custom_param');
 
 if (my_custom_param !== null) {
@@ -23,7 +26,9 @@ if (my_custom_param !== null) {
 export default function Login(props: PageProps<Extract<KcContext, { pageId: 'login.ftl' }>, I18n>) {
     const { kcContext } = props;
 
-    const { realm, url, login, message } = kcContext;
+    const { social, realm, url, login, message } = kcContext;
+
+    const isPaymentPage = false;
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
 
@@ -68,85 +73,118 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
             />
 
             <STYLE.PageContent>
-                <Form
-                    padding={isMobile ? '40px 32px' : '60px 80px 40px'}
-                    maxWidth="558px"
-                    id="kc-form-login"
-                    onSubmit={onSubmit}
-                    action={url.loginAction}
-                    method="post"
-                >
-                    <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
+                {isPaymentPage ? (
+                    <Form padding={isMobile ? '40px 32px' : '60px 80px 40px'} maxWidth="558px">
                         <STYLE.Title>Log In</STYLE.Title>
 
-                        {!isMobile && (
-                            <LoginS.SignUpWrapper>
-                                <STYLE.TextGray>Don’t have an account?</STYLE.TextGray>
+                        <STYLE.InputsWrapper>
+                            {social?.providers?.map((item) => (
+                                <LoginS.SocialLink
+                                    key={item.providerId}
+                                    id={`social-${item.alias}`}
+                                    href={item.loginUrl}
+                                    type="button"
+                                >
+                                    {item.providerId === 'google' ? (
+                                        <LoginS.SocialIconWrapper>
+                                            <LoginS.SocialIcon src={google} />
+                                        </LoginS.SocialIconWrapper>
+                                    ) : (
+                                        item.providerId === 'apple' && (
+                                            <LoginS.SocialIconWrapper>
+                                                <LoginS.SocialIcon src={apple} />
+                                            </LoginS.SocialIconWrapper>
+                                        )
+                                    )}
 
-                                <STYLE.Link href={url.registrationUrl}>
-                                    Become a Merchant
-                                </STYLE.Link>
-                            </LoginS.SignUpWrapper>
-                        )}
-                    </STYLE.ColumnWrapper>
+                                    {item.displayName}
+                                </LoginS.SocialLink>
+                            ))}
+                        </STYLE.InputsWrapper>
+                    </Form>
+                ) : (
+                    <Form
+                        padding={isMobile ? '40px 32px' : '60px 80px 40px'}
+                        maxWidth="558px"
+                        id="kc-form-login"
+                        onSubmit={onSubmit}
+                        action={url.loginAction}
+                        method="post"
+                    >
+                        <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
+                            <STYLE.Title>Log In</STYLE.Title>
 
-                    <STYLE.InputsWrapper>
-                        <STYLE.ColumnWrapper>
-                            <STYLE.InputTitle>E-mail</STYLE.InputTitle>
+                            {!isMobile && (
+                                <LoginS.SignUpWrapper>
+                                    <STYLE.TextGray>Don’t have an account?</STYLE.TextGray>
 
-                            <Input
-                                value={email}
-                                setValue={setEmail}
-                                helpFuncForOnChange={() => setEmailValid(true)}
-                                inputProps={{
-                                    name: 'email',
-                                    header: 'E-mail',
-                                    defaultValue: login.username ?? '',
-                                }}
-                                type="text"
-                                placeholder="E-mail"
-                                isError={!isEmailValid}
-                                errorText="Email not valid"
-                                blurHandler={() =>
-                                    !!email && email !== 'admin'
-                                        ? setEmailValid(validateEmail(email))
-                                        : setEmailValid(true)
+                                    <STYLE.Link href={url.registrationUrl}>
+                                        Become a Merchant
+                                    </STYLE.Link>
+                                </LoginS.SignUpWrapper>
+                            )}
+                        </STYLE.ColumnWrapper>
+
+                        <STYLE.InputsWrapper>
+                            <STYLE.ColumnWrapper>
+                                <STYLE.InputTitle>E-mail</STYLE.InputTitle>
+
+                                <Input
+                                    value={email}
+                                    setValue={setEmail}
+                                    helpFuncForOnChange={() => setEmailValid(true)}
+                                    inputProps={{
+                                        name: 'email',
+                                        header: 'E-mail',
+                                        defaultValue: login.username ?? '',
+                                    }}
+                                    type="text"
+                                    placeholder="E-mail"
+                                    isError={!isEmailValid}
+                                    errorText="Email not valid"
+                                    blurHandler={() =>
+                                        !!email && email !== 'admin'
+                                            ? setEmailValid(validateEmail(email))
+                                            : setEmailValid(true)
+                                    }
+                                />
+                            </STYLE.ColumnWrapper>
+
+                            <STYLE.ColumnWrapper>
+                                <STYLE.InputTitle>Password</STYLE.InputTitle>
+
+                                <Input
+                                    value={password}
+                                    setValue={setPassword}
+                                    inputProps={{
+                                        name: 'password',
+                                        header: 'Password',
+                                    }}
+                                    type="password"
+                                    placeholder="Password"
+                                />
+                            </STYLE.ColumnWrapper>
+                        </STYLE.InputsWrapper>
+
+                        <LoginS.ButtonsWrapper>
+                            <Button
+                                maxWidth={isMobile ? '100%' : '158px'}
+                                isLoading={isLoginButtonDisabled}
+                                disabled={
+                                    !email || !password || isLoginButtonDisabled || !isEmailValid
                                 }
-                            />
-                        </STYLE.ColumnWrapper>
+                            >
+                                Continue
+                            </Button>
 
-                        <STYLE.ColumnWrapper>
-                            <STYLE.InputTitle>Password</STYLE.InputTitle>
-
-                            <Input
-                                value={password}
-                                setValue={setPassword}
-                                inputProps={{
-                                    name: 'password',
-                                    header: 'Password',
-                                }}
-                                type="password"
-                                placeholder="Password"
-                            />
-                        </STYLE.ColumnWrapper>
-                    </STYLE.InputsWrapper>
-
-                    <LoginS.ButtonsWrapper>
-                        <Button
-                            maxWidth={isMobile ? '100%' : '158px'}
-                            isLoading={isLoginButtonDisabled}
-                            disabled={!email || !password || isLoginButtonDisabled || !isEmailValid}
-                        >
-                            Continue
-                        </Button>
-
-                        {realm.resetPasswordAllowed && (
-                            <STYLE.Link href={url.loginResetCredentialsUrl}>
-                                Forgot your password?
-                            </STYLE.Link>
-                        )}
-                    </LoginS.ButtonsWrapper>
-                </Form>
+                            {realm.resetPasswordAllowed && (
+                                <STYLE.Link href={url.loginResetCredentialsUrl}>
+                                    Forgot your password?
+                                </STYLE.Link>
+                            )}
+                        </LoginS.ButtonsWrapper>
+                    </Form>
+                )}
             </STYLE.PageContent>
 
             <Footer />

@@ -1,8 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { Icon } from 'components/other';
-
 import { theme } from 'styles';
 
 import * as T from './types';
@@ -11,6 +9,7 @@ const ButtonBase = styled.button<T.IButton>`
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 
     ${({ size }) =>
         size === 'small'
@@ -143,12 +142,6 @@ export const Button = styled(ButtonBase)<T.IButton>`
             : primaryButtonStyle}
 
     max-width: ${({ maxWidth = '100%' }) => maxWidth};
-`;
-
-export const IconStyled = styled(Icon)<{ isInsideTextButton?: boolean }>`
-    user-select: none;
-
-    margin-right: ${({ isInsideTextButton }) => !isInsideTextButton && '10px'};
 `;
 
 export const TextButton = styled.button`

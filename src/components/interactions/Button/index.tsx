@@ -16,13 +16,7 @@ export const Button: FC<T.IButton> = (props) => {
                 <Loader size={props.loaderSize || (props.styleScheme === 'square' ? 16 : 20)} />
             ) : (
                 <>
-                    {props.icon && (
-                        <S.IconStyled
-                            icon={props.icon}
-                            color={props.iconColor}
-                            size={props.iconSize || 16}
-                        />
-                    )}
+                    {!!props.icon && props.icon}
 
                     {props.children}
                 </>
@@ -34,18 +28,7 @@ export const Button: FC<T.IButton> = (props) => {
 export const TextButton: FC<T.ITextButton> = (props) => {
     return (
         <S.TextButton {...props}>
-            {props.isLoading ? (
-                <Loader size={10} />
-            ) : (
-                props.icon && (
-                    <S.IconStyled
-                        icon={props.icon}
-                        color={props.iconColor}
-                        size={props.iconSize || 12}
-                        isInsideTextButton
-                    />
-                )
-            )}
+            {props.isLoading ? <Loader size={10} /> : !!props.icon && props.icon}
 
             {props.text}
         </S.TextButton>

@@ -36,6 +36,8 @@ export const NavigationRouter = observer(() => {
 
                     <Route path={C.VERIFY_EMAIL_PAGE} element={<PAGES.LoginVerifyEmail />} />
 
+                    <Route path={C.EXPIRED_PAGE} element={<PAGES.LoginPageExpired />} />
+
                     <Route path="*" element={<PAGES.LoginPage />} />
                 </Routes>
             </S.MainWrapper>

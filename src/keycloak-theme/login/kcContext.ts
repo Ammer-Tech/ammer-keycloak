@@ -36,6 +36,9 @@ export const { getKcContext } = createGetKcContext<KcContextExtension>({
             pageId: 'login-verify-email.ftl',
         },
         {
+            pageId: 'login-page-expired.ftl',
+        },
+        {
             pageId: 'register.ftl',
             authorizedMailDomains: [
                 'example.com',

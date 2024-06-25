@@ -71,6 +71,8 @@ export const Text = styled.p`
 `;
 
 export const TextGray = styled.p`
+    width: fit-content;
+
     font-size: ${theme.text.normal.fontSize};
     font-weight: ${theme.text.extraHuge.fontWeight};
     line-height: 23.2px;
