@@ -13,7 +13,8 @@ const LoginResetPassword = lazy(() => import('./pages/LoginResetPassword'));
 const LoginUpdatePassword = lazy(() => import('./pages/LoginUpdatePassword'));
 const LoginVerifyEmail = lazy(() => import('./pages/LoginVerifyEmail'));
 const LoginPageExpired = lazy(() => import('./pages/LoginPageExpired'));
-const Info = lazy(() => import('keycloakify/login/pages/Info'));
+const Info = lazy(() => import('./pages/Info'));
+// const Info = lazy(() => import('keycloakify/login/pages/Info'));
 
 // This is like adding classes to theme.properties
 // https://github.com/keycloak/keycloak/blob/11.0.3/themes/src/main/resources/theme/keycloak/login/theme.properties
@@ -91,16 +92,15 @@ export default function KcApp(props: { kcContext: KcContext }) {
                     case 'info.ftl':
                         return (
                             <Info
-                                {...{ kcContext, i18n, classes }}
-                                Template={lazy(() => import('keycloakify/login/Template'))}
+                                {...{ kcContext, i18n, Template, classes }}
+                                // Template={lazy(() => import('keycloakify/login/Template'))}
                                 doUseDefaultCss={true}
                             />
                         );
                     default:
                         return (
                             <Fallback
-                                {...{ kcContext, i18n, classes }}
-                                Template={Template}
+                                {...{ kcContext, i18n, Template, classes }}
                                 doUseDefaultCss={true}
                             />
                         );
