@@ -122,7 +122,7 @@ export const InputTitle = styled.p`
 
 export const InputsWrapper = styled(ColumnWrapper)`
     gap: 26px;
-    margin-top: 8px;
+    margin-top: 48px;
 
     ${toEnd('mobile')} {
         margin-top: 40px;

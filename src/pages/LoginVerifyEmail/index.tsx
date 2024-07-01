@@ -5,6 +5,7 @@ import { Footer, Header } from 'components/core';
 
 import { useDeviceType } from 'hooks';
 import * as STYLE from 'styles';
+import * as EmailS from 'styles/LoginVerifyEmail';
 
 import email from 'images/email.png';
 
@@ -33,7 +34,7 @@ export const LoginVerifyEmail = () => {
                 <Form padding={isMobile ? '40px 32px' : '60px 75px'} maxWidth="558px">
                     <STYLE.Title>Email verification</STYLE.Title>
 
-                    <STYLE.InputsWrapper>
+                    <EmailS.Content>
                         <STYLE.TextGray>
                             An email to verify your email address has been sent to your address:{' '}
                             <STYLE.EmailText>test@test.com</STYLE.EmailText>
@@ -51,7 +52,7 @@ export const LoginVerifyEmail = () => {
                                 Click to resend
                             </STYLE.Link>
                         </STYLE.TextGray>
-                    </STYLE.InputsWrapper>
+                    </EmailS.Content>
                 </Form>
             </STYLE.PageContent>
 
