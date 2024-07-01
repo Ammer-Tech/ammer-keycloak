@@ -64,18 +64,23 @@ export const FlexBetweenWrapper = styled.div<{ gap?: number; fullWidth?: boolean
     width: ${({ fullWidth }) => fullWidth && '100%'};
 `;
 
-export const Text = styled.p`
-    font-size: ${theme.text.normal.fontSize};
-    font-weight: ${theme.text.extraHuge.fontWeight};
-    line-height: 23.2px;
+export const EmailText = styled.span`
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 158%;
+
+    color: ${theme.colors.blackText};
 `;
 
 export const TextGray = styled.p`
     width: fit-content;
 
-    font-size: ${theme.text.normal.fontSize};
-    font-weight: ${theme.text.extraHuge.fontWeight};
-    line-height: 23.2px;
+    //styleName: Headline/S;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 158%;
+
+    text-align: center;
 
     color: ${theme.colors.gray};
 `;
@@ -95,12 +100,14 @@ export const Link = styled.a`
 `;
 
 export const Title = styled.h1`
-    font-size: ${theme.text.extraHuge.fontSize};
-    font-weight: ${theme.text.extraHuge.fontWeight};
-    line-height: 40.5px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 158%;
+
+    text-align: center;
 
     ${toEnd('mobile')} {
-        font-size: ${theme.text.huge.fontSize};
+        font-size: 26px;
         line-height: 158%;
     }
 `;
@@ -115,9 +122,17 @@ export const InputTitle = styled.p`
 
 export const InputsWrapper = styled(ColumnWrapper)`
     gap: 26px;
-    margin-top: 48px;
+    margin-top: 8px;
 
     ${toEnd('mobile')} {
         margin-top: 40px;
     }
+`;
+
+export const EmailIcon = styled.img`
+    width: 105px;
+    height: 111px;
+    min-width: 105px;
+    min-height: 111px;
+    margin: 14px auto 40px;
 `;

@@ -10,6 +10,8 @@ import * as STYLE from 'styles';
 import type { I18n } from '../i18n';
 import type { KcContext } from '../kcContext';
 
+import email from 'images/email.png';
+
 export default function LoginVerifyEmail(
     props: PageProps<Extract<KcContext, { pageId: 'login-verify-email.ftl' }>, I18n>,
 ) {
@@ -39,28 +41,22 @@ export default function LoginVerifyEmail(
             />
 
             <STYLE.PageContent>
-                <Form padding={isMobile ? '40px 32px' : '60px 80px 40px'} maxWidth="558px">
+                <Form padding={isMobile ? '40px 32px' : '60px 75px'} maxWidth="558px">
                     <STYLE.Title>Email verification</STYLE.Title>
 
                     <STYLE.InputsWrapper>
-                        <STYLE.ColumnWrapper>
-                            <STYLE.TextGray>
-                                An email with instructions to verify your email address has been
-                                sent to your address:
-                            </STYLE.TextGray>
+                        <STYLE.TextGray>
+                            An email to verify your email address has been sent to your address:{' '}
+                            <STYLE.EmailText>{user?.email}</STYLE.EmailText>
+                        </STYLE.TextGray>
 
-                            <STYLE.Text>{user?.email}.</STYLE.Text>
-                        </STYLE.ColumnWrapper>
+                        <STYLE.EmailIcon src={email} />
 
-                        <STYLE.ColumnWrapper>
-                            <STYLE.TextGray>
-                                Haven`t received a verification code in your email ?
-                            </STYLE.TextGray>
-
-                            <STYLE.Link href={url.loginAction}>
-                                Click here to re-send the email
-                            </STYLE.Link>
-                        </STYLE.ColumnWrapper>
+                        <STYLE.TextGray>
+                            {'Haven’t received a verification email?'}
+                            &nbsp; &nbsp;
+                            <STYLE.Link href={url.loginAction}>Click to resend</STYLE.Link>
+                        </STYLE.TextGray>
                     </STYLE.InputsWrapper>
                 </Form>
             </STYLE.PageContent>

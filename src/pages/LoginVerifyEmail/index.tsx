@@ -6,6 +6,8 @@ import { Footer, Header } from 'components/core';
 import { useDeviceType } from 'hooks';
 import * as STYLE from 'styles';
 
+import email from 'images/email.png';
+
 export const LoginVerifyEmail = () => {
     const { isMobile } = useDeviceType();
 
@@ -28,31 +30,27 @@ export const LoginVerifyEmail = () => {
             />
 
             <STYLE.PageContent>
-                <Form padding={isMobile ? '40px 32px' : '60px 80px 40px'} maxWidth="558px">
+                <Form padding={isMobile ? '40px 32px' : '60px 75px'} maxWidth="558px">
                     <STYLE.Title>Email verification</STYLE.Title>
 
                     <STYLE.InputsWrapper>
-                        <STYLE.ColumnWrapper>
-                            <STYLE.TextGray>
-                                An email with instructions to verify your email address has been
-                                sent to your address.
-                            </STYLE.TextGray>
+                        <STYLE.TextGray>
+                            An email to verify your email address has been sent to your address:{' '}
+                            <STYLE.EmailText>test@test.com</STYLE.EmailText>
+                        </STYLE.TextGray>
 
-                            <STYLE.Text>test@test.com</STYLE.Text>
-                        </STYLE.ColumnWrapper>
+                        <STYLE.EmailIcon src={email} />
 
-                        <STYLE.ColumnWrapper>
-                            <STYLE.TextGray>
-                                Haven`t received a verification code in your email ?
-                            </STYLE.TextGray>
-
+                        <STYLE.TextGray>
+                            {'Haven’t received a verification email?'}
+                            &nbsp; &nbsp;
                             <STYLE.Link
                                 href="/"
                                 // href={url.loginAction}
                             >
-                                Click here to re-send the email
+                                Click to resend
                             </STYLE.Link>
-                        </STYLE.ColumnWrapper>
+                        </STYLE.TextGray>
                     </STYLE.InputsWrapper>
                 </Form>
             </STYLE.PageContent>
