@@ -99,12 +99,12 @@ export const Link = styled.a`
     cursor: pointer;
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h1<{ isCenter?: boolean }>`
     font-size: 30px;
     font-weight: 700;
     line-height: 158%;
 
-    text-align: center;
+    text-align: ${({ isCenter }) => isCenter && 'center'};
 
     ${toEnd('mobile')} {
         font-size: 26px;

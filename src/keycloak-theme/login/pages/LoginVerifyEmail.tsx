@@ -43,7 +43,7 @@ export default function LoginVerifyEmail(
 
             <STYLE.PageContent>
                 <Form padding={isMobile ? '40px 32px' : '60px 75px'} maxWidth="558px">
-                    <STYLE.Title>Email verification</STYLE.Title>
+                    <STYLE.Title isCenter>Email verification</STYLE.Title>
 
                     <EmailS.Content>
                         <STYLE.TextGray>
