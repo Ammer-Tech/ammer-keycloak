@@ -72,15 +72,14 @@ export const EmailText = styled.span`
     color: ${theme.colors.blackText};
 `;
 
-export const TextGray = styled.p`
+export const TextGray = styled.p<{ isCenter?: boolean }>`
     width: fit-content;
 
-    //styleName: Headline/S;
     font-size: 16px;
     font-weight: 700;
     line-height: 158%;
 
-    text-align: center;
+    align-items: ${({ isCenter = true }) => isCenter && 'center'};
 
     color: ${theme.colors.gray};
 `;

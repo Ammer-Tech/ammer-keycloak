@@ -38,6 +38,8 @@ export const NavigationRouter = observer(() => {
 
                     <Route path={C.EXPIRED_PAGE} element={<PAGES.LoginPageExpired />} />
 
+                    <Route path={C.INFO_PAGE} element={<PAGES.Info />} />
+
                     <Route path="*" element={<PAGES.LoginPage />} />
                 </Routes>
             </S.MainWrapper>

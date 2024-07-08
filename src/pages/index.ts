@@ -1,3 +1,4 @@
+export { Info } from './Info';
 export { LoginPage } from './LoginPage';
 export { LoginPageExpired } from './LoginPageExpired';
 export { LoginVerifyEmail } from './LoginVerifyEmail';

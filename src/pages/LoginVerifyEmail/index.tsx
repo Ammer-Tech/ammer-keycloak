@@ -35,7 +35,7 @@ export const LoginVerifyEmail = () => {
                     <STYLE.Title isCenter>Email verification</STYLE.Title>
 
                     <EmailS.Content>
-                        <STYLE.TextGray>
+                        <STYLE.TextGray isCenter>
                             An email to verify your email address has been sent to your address:{' '}
                             <STYLE.EmailText>test@test.com</STYLE.EmailText>
                         </STYLE.TextGray>
