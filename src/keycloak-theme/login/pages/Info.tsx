@@ -14,8 +14,10 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: 'info
     const { kcContext } = props;
     const { message } = kcContext;
 
-    console.log('kcContext', kcContext);
-    // Confirm validity
+    const appLink =
+        kcContext.realm.displayName === 'AmmerMerchants'
+            ? 'https://merchants.ammer.io/'
+            : 'https://merchant.ammer.group/';
 
     const [isMessageSuccess, setMessageSuccess] = useState(false);
 
@@ -36,11 +38,7 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: 'info
         <STYLE.PageWrapper>
             <Header
                 buttonName="Log In"
-                onClick={() =>
-                    (window.location = 'https://merchants.ammer.io' as
-                        | Location
-                        | (string & Location))
-                }
+                onClick={() => (window.location = appLink as Location | (string & Location))}
             />
 
             <STYLE.PageContent>
@@ -56,9 +54,7 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: 'info
                                 : 'Please press the button below to go to the app'}
                         </STYLE.TextGray>
 
-                        <STYLE.Link href="https://merchants.ammer.io/">
-                            {'<< Go to Application'}
-                        </STYLE.Link>
+                        <STYLE.Link href={appLink}>{'<< Go to Application'}</STYLE.Link>
                     </STYLE.InputsWrapper>
                 </Form>
             </STYLE.PageContent>
