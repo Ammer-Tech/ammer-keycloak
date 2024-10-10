@@ -11,7 +11,7 @@ export const ButtonsWrapper = styled(ColumnWrapper)`
 `;
 
 export const SignUpWrapper = styled(FlexAlignCenterWrapper)`
-    gap: 12px;
+    gap: 6px;
 
     ${toEnd('mobile')} {
         align-items: flex-start;
