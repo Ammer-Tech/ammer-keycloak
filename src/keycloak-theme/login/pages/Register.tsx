@@ -78,7 +78,7 @@ export default function Register(
                             type={isAmmerCapitalEU ? 'eu' : isAmmerCapitalCH ? 'ch' : 'global'}
                         />
 
-                        <STYLE.Title>{`Log In | ${
+                        <STYLE.Title>{`Sign Up | ${
                             isAmmerCapitalEU || isAmmerCapitalCH
                                 ? 'Custodial Platform'
                                 : 'Non-Custodial Platform'
@@ -204,9 +204,11 @@ export default function Register(
 
                         {!isMobile && (
                             <LoginS.SignUpWrapper>
-                                <STYLE.TextGray>Already have an account?</STYLE.TextGray>
+                                <LoginS.TextGrayStyled>
+                                    Already have an account?
+                                </LoginS.TextGrayStyled>
 
-                                <STYLE.Link href={url.loginUrl}>Log In</STYLE.Link>
+                                <LoginS.LinkStyled href={url.loginUrl}>Log In</LoginS.LinkStyled>
                             </LoginS.SignUpWrapper>
                         )}
                     </LoginS.ButtonsWrapper>
