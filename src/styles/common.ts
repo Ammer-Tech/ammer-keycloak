@@ -121,11 +121,7 @@ export const InputTitle = styled.p`
 
 export const InputsWrapper = styled(ColumnWrapper)`
     gap: 26px;
-    margin-top: 48px;
-
-    ${toEnd('mobile')} {
-        margin-top: 40px;
-    }
+    margin-top: 40px;
 `;
 
 export const EmailIcon = styled.img`

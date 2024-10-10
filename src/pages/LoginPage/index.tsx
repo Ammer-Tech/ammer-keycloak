@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Form } from 'components/containers';
 import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
+import { PlatformLabel } from 'components/other';
 
 import { useDeviceType } from 'hooks';
 import * as STYLE from 'styles';
@@ -21,6 +22,10 @@ export const LoginPage = () => {
     const { isMobile } = useDeviceType();
 
     const isPaymentPage = false;
+    const isAmmerCapitalEU = false;
+    //  const isAmmerCapitalEU = kcContext.realm.displayName === 'AmmerCapitalMerchants'
+    const isAmmerCapitalCH = false;
+    //  const isAmmerCapitalCH = kcContext.realm.displayName === 'AmmerCapitalCH'
 
     return (
         <STYLE.PageWrapper>
@@ -74,20 +79,15 @@ export const LoginPage = () => {
                         method="post"
                     >
                         <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
-                            <STYLE.Title>Log In</STYLE.Title>
+                            <PlatformLabel
+                                type={isAmmerCapitalEU ? 'eu' : isAmmerCapitalCH ? 'ch' : 'global'}
+                            />
 
-                            {!isMobile && (
-                                <LoginS.SignUpWrapper>
-                                    <STYLE.TextGray>Don’t have an account?</STYLE.TextGray>
-
-                                    <STYLE.Link
-                                        href="/"
-                                        // href={url.registrationUrl}
-                                    >
-                                        Become a Merchant
-                                    </STYLE.Link>
-                                </LoginS.SignUpWrapper>
-                            )}
+                            <STYLE.Title>{`Log In | ${
+                                isAmmerCapitalEU || isAmmerCapitalCH
+                                    ? 'Custodial Platform'
+                                    : 'Non-Custodial Platform'
+                            }`}</STYLE.Title>
                         </STYLE.ColumnWrapper>
 
                         <STYLE.InputsWrapper>
@@ -129,26 +129,38 @@ export const LoginPage = () => {
                                     type="password"
                                     placeholder="Password"
                                 />
+
+                                {/* {realm.resetPasswordAllowed && ( */}
+                                <LoginS.LinkStyled
+                                    href="/"
+                                    // href={url.loginResetCredentialsUrl}
+                                >
+                                    Forgot your password?
+                                </LoginS.LinkStyled>
+                                {/* )} */}
                             </STYLE.ColumnWrapper>
                         </STYLE.InputsWrapper>
 
                         <LoginS.ButtonsWrapper>
                             <Button
-                                maxWidth={isMobile ? '100%' : '158px'}
-                                // isLoading={isLoginButtonDisabled}
-                                // disabled={!email || !password || isLoginButtonDisabled || !isEmailValid}
+                            // isLoading={isLoginButtonDisabled}
+                            // disabled={!email || !password || isLoginButtonDisabled || !isEmailValid}
                             >
                                 Continue
                             </Button>
 
-                            {/* {realm.resetPasswordAllowed && ( */}
-                            <STYLE.Link
-                                href="/"
-                                // href={url.loginResetCredentialsUrl}
-                            >
-                                Forgot your password?
-                            </STYLE.Link>
-                            {/* )} */}
+                            {!isMobile && (
+                                <LoginS.SignUpWrapper>
+                                    <STYLE.TextGray>Don’t have an account?</STYLE.TextGray>
+
+                                    <STYLE.Link
+                                        href="/"
+                                        // href={url.registrationUrl}
+                                    >
+                                        Become a Merchant
+                                    </STYLE.Link>
+                                </LoginS.SignUpWrapper>
+                            )}
                         </LoginS.ButtonsWrapper>
                     </Form>
                 )}

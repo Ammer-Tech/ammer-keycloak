@@ -18,6 +18,13 @@ export default function LoginPageExpired(
 
     const { isMobile } = useDeviceType();
 
+    const appLink =
+        kcContext.realm.displayName === 'AmmerCapitalMerchants'
+            ? 'https://merchant.ammer.group/'
+            : kcContext.realm.displayName === 'AmmerCapitalCH'
+            ? 'https://merchants.ammer.capital'
+            : 'https://merchants.ammer.io/';
+
     useEffect(() => {
         if (message?.type === 'error') {
             notification.error(message.summary);
@@ -33,11 +40,7 @@ export default function LoginPageExpired(
         <STYLE.PageWrapper>
             <Header
                 buttonName="Log In"
-                onClick={() =>
-                    (window.location = 'https://merchants.ammer.io' as
-                        | Location
-                        | (string & Location))
-                }
+                onClick={() => (window.location = appLink as Location | (string & Location))}
             />
 
             <STYLE.PageContent>
@@ -49,9 +52,7 @@ export default function LoginPageExpired(
                             Please press the button below to go to the app
                         </STYLE.TextGray>
 
-                        <STYLE.Link href="https://merchants.ammer.io/">
-                            {'<< Back to Application'}
-                        </STYLE.Link>
+                        <STYLE.Link href={appLink}>{'<< Back to Application'}</STYLE.Link>
                     </STYLE.InputsWrapper>
                 </Form>
             </STYLE.PageContent>

@@ -15,9 +15,11 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: 'info
     const { message } = kcContext;
 
     const appLink =
-        kcContext.realm.displayName === 'AmmerMerchants'
-            ? 'https://merchants.ammer.io/'
-            : 'https://merchant.ammer.group/';
+        kcContext.realm.displayName === 'AmmerCapitalMerchants'
+            ? 'https://merchant.ammer.group/'
+            : kcContext.realm.displayName === 'AmmerCapitalCH'
+            ? 'https://merchants.ammer.capital'
+            : 'https://merchants.ammer.io/';
 
     const [isMessageSuccess, setMessageSuccess] = useState(false);
 

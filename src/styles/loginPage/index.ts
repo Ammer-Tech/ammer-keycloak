@@ -1,17 +1,13 @@
 import styled from '@emotion/styled';
 
-import { FlexAlignCenterWrapper, theme, toEnd } from 'styles';
+import { ColumnWrapper, FlexAlignCenterWrapper, Link, theme, toEnd } from 'styles';
 
-export const ButtonsWrapper = styled(FlexAlignCenterWrapper)`
-    gap: 28px;
+export const ButtonsWrapper = styled(ColumnWrapper)`
+    align-items: center;
+    gap: 12px;
 
     width: 100%;
-    margin-top: 80px;
-
-    ${toEnd('mobile')} {
-        flex-direction: column;
-        margin-top: 40px;
-    }
+    margin-top: 60px;
 `;
 
 export const SignUpWrapper = styled(FlexAlignCenterWrapper)`
@@ -89,4 +85,10 @@ export const SocialIcon = styled.img`
         height: 18px;
         min-height: 18px;
     }
+`;
+
+export const LinkStyled = styled(Link)`
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16.2px;
 `;

@@ -5,6 +5,7 @@ import { useConstCallback } from 'keycloakify/tools/useConstCallback';
 import { Form, notification, NotificationRoot } from 'components/containers';
 import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
+import { PlatformLabel } from 'components/other';
 
 import { useDeviceType } from 'hooks';
 import * as STYLE from 'styles';
@@ -28,6 +29,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
     const { social, realm, url, login, message } = kcContext;
 
+    // to make the true here, then make a build for the payment page and return the false
     const isPaymentPage = false;
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
@@ -38,6 +40,9 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
     const [isEmailValid, setEmailValid] = useState(true);
 
     const { isMobile } = useDeviceType();
+
+    const isAmmerCapitalEU = kcContext.realm.displayName === 'AmmerCapitalMerchants';
+    const isAmmerCapitalCH = kcContext.realm.displayName === 'AmmerCapitalCH';
 
     useEffect(() => {
         if (message?.type === 'error') {
@@ -112,17 +117,15 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                         method="post"
                     >
                         <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
-                            <STYLE.Title>Log In</STYLE.Title>
+                            <PlatformLabel
+                                type={isAmmerCapitalEU ? 'eu' : isAmmerCapitalCH ? 'ch' : 'global'}
+                            />
 
-                            {!isMobile && (
-                                <LoginS.SignUpWrapper>
-                                    <STYLE.TextGray>Don’t have an account?</STYLE.TextGray>
-
-                                    <STYLE.Link href={url.registrationUrl}>
-                                        Become a Merchant
-                                    </STYLE.Link>
-                                </LoginS.SignUpWrapper>
-                            )}
+                            <STYLE.Title>{`Log In | ${
+                                isAmmerCapitalEU || isAmmerCapitalCH
+                                    ? 'Custodial Platform'
+                                    : 'Non-Custodial Platform'
+                            }`}</STYLE.Title>
                         </STYLE.ColumnWrapper>
 
                         <STYLE.InputsWrapper>
@@ -164,6 +167,12 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                                     placeholder="Password"
                                 />
                             </STYLE.ColumnWrapper>
+
+                            {realm.resetPasswordAllowed && (
+                                <LoginS.LinkStyled href={url.loginResetCredentialsUrl}>
+                                    Forgot your password?
+                                </LoginS.LinkStyled>
+                            )}
                         </STYLE.InputsWrapper>
 
                         <LoginS.ButtonsWrapper>
@@ -177,10 +186,14 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
                                 Continue
                             </Button>
 
-                            {realm.resetPasswordAllowed && (
-                                <STYLE.Link href={url.loginResetCredentialsUrl}>
-                                    Forgot your password?
-                                </STYLE.Link>
+                            {!isMobile && (
+                                <LoginS.SignUpWrapper>
+                                    <STYLE.TextGray>Don’t have an account?</STYLE.TextGray>
+
+                                    <STYLE.Link href={url.registrationUrl}>
+                                        Become a Merchant
+                                    </STYLE.Link>
+                                </LoginS.SignUpWrapper>
                             )}
                         </LoginS.ButtonsWrapper>
                     </Form>

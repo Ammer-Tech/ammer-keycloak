@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Form } from 'components/containers';
 import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
+import { PlatformLabel } from 'components/other';
 
 import { useDeviceType } from 'hooks';
 import * as STYLE from 'styles';
@@ -22,6 +23,11 @@ export const RegisterPage = () => {
     const [isPasswordsMatch, setPasswordsMatch] = useState(true);
 
     const { isMobile } = useDeviceType();
+
+    const isAmmerCapitalEU = false;
+    //  const isAmmerCapitalEU = kcContext.realm.displayName === 'AmmerCapitalMerchants'
+    const isAmmerCapitalCH = false;
+    //  const isAmmerCapitalCH = kcContext.realm.displayName === 'AmmerCapitalCH'
 
     const conditionForButtonDisabled =
         !firstName ||
@@ -51,20 +57,15 @@ export const RegisterPage = () => {
                     method="post"
                 >
                     <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
-                        <STYLE.Title>Sign Up</STYLE.Title>
+                        <PlatformLabel
+                            type={isAmmerCapitalEU ? 'eu' : isAmmerCapitalCH ? 'ch' : 'global'}
+                        />
 
-                        {!isMobile && (
-                            <LoginS.SignUpWrapper>
-                                <STYLE.TextGray>Already have an account?</STYLE.TextGray>
-
-                                <STYLE.Link
-                                    href="/"
-                                    // href={url.loginUrl}
-                                >
-                                    Log In
-                                </STYLE.Link>
-                            </LoginS.SignUpWrapper>
-                        )}
+                        <STYLE.Title>{`Log In | ${
+                            isAmmerCapitalEU || isAmmerCapitalCH
+                                ? 'Custodial Platform'
+                                : 'Non-Custodial Platform'
+                        }`}</STYLE.Title>
                     </STYLE.ColumnWrapper>
 
                     <STYLE.InputsWrapper>
@@ -184,8 +185,21 @@ export const RegisterPage = () => {
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
 
-                    <LoginS.ButtonsWrapper>
+                    <LoginS.ButtonsWrapper style={{ marginTop: '80px' }}>
                         <Button disabled={conditionForButtonDisabled}>Sign Up</Button>
+
+                        {!isMobile && (
+                            <LoginS.SignUpWrapper>
+                                <STYLE.TextGray>Already have an account?</STYLE.TextGray>
+
+                                <STYLE.Link
+                                    href="/"
+                                    // href={url.loginUrl}
+                                >
+                                    Log In
+                                </STYLE.Link>
+                            </LoginS.SignUpWrapper>
+                        )}
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>

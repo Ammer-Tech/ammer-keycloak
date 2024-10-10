@@ -5,6 +5,7 @@ import type { PageProps } from 'keycloakify/login/pages/PageProps';
 import { Form, notification, NotificationRoot } from 'components/containers';
 import { Footer, Header } from 'components/core';
 import { Button, Input } from 'components/interactions';
+import { PlatformLabel } from 'components/other';
 
 import { useDeviceType } from 'hooks';
 import * as STYLE from 'styles';
@@ -33,6 +34,9 @@ export default function Register(
     const [isPasswordsMatch, setPasswordsMatch] = useState(true);
 
     const { isMobile } = useDeviceType();
+
+    const isAmmerCapitalEU = kcContext.realm.displayName === 'AmmerCapitalMerchants';
+    const isAmmerCapitalCH = kcContext.realm.displayName === 'AmmerCapitalCH';
 
     const conditionForButtonDisabled =
         !firstName ||
@@ -70,15 +74,15 @@ export default function Register(
                     method="post"
                 >
                     <STYLE.ColumnWrapper gap={isMobile ? 12 : 0}>
-                        <STYLE.Title>Sign Up</STYLE.Title>
+                        <PlatformLabel
+                            type={isAmmerCapitalEU ? 'eu' : isAmmerCapitalCH ? 'ch' : 'global'}
+                        />
 
-                        {!isMobile && (
-                            <LoginS.SignUpWrapper>
-                                <STYLE.TextGray>Already have an account?</STYLE.TextGray>
-
-                                <STYLE.Link href={url.loginUrl}>Log In</STYLE.Link>
-                            </LoginS.SignUpWrapper>
-                        )}
+                        <STYLE.Title>{`Log In | ${
+                            isAmmerCapitalEU || isAmmerCapitalCH
+                                ? 'Custodial Platform'
+                                : 'Non-Custodial Platform'
+                        }`}</STYLE.Title>
                     </STYLE.ColumnWrapper>
 
                     <STYLE.InputsWrapper>
@@ -195,8 +199,16 @@ export default function Register(
                         </STYLE.ColumnWrapper>
                     </STYLE.InputsWrapper>
 
-                    <LoginS.ButtonsWrapper>
+                    <LoginS.ButtonsWrapper style={{ marginTop: '80px' }}>
                         <Button disabled={conditionForButtonDisabled}>Sign Up</Button>
+
+                        {!isMobile && (
+                            <LoginS.SignUpWrapper>
+                                <STYLE.TextGray>Already have an account?</STYLE.TextGray>
+
+                                <STYLE.Link href={url.loginUrl}>Log In</STYLE.Link>
+                            </LoginS.SignUpWrapper>
+                        )}
                     </LoginS.ButtonsWrapper>
                 </Form>
             </STYLE.PageContent>
