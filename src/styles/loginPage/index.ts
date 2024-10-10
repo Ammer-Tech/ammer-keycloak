@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { ColumnWrapper, FlexAlignCenterWrapper, Link, theme, toEnd } from 'styles';
+import { ColumnWrapper, FlexAlignCenterWrapper, Link, TextGray, theme, toEnd } from 'styles';
 
 export const ButtonsWrapper = styled(ColumnWrapper)`
     align-items: center;
@@ -88,6 +88,12 @@ export const SocialIcon = styled.img`
 `;
 
 export const LinkStyled = styled(Link)`
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16.2px;
+`;
+
+export const TextGrayStyled = styled(TextGray)`
     font-size: 12px;
     font-weight: 500;
     line-height: 16.2px;

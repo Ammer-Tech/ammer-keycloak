@@ -177,7 +177,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
                         <LoginS.ButtonsWrapper>
                             <Button
-                                maxWidth={isMobile ? '100%' : '158px'}
                                 isLoading={isLoginButtonDisabled}
                                 disabled={
                                     !email || !password || isLoginButtonDisabled || !isEmailValid
@@ -188,11 +187,13 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
                             {!isMobile && (
                                 <LoginS.SignUpWrapper>
-                                    <STYLE.TextGray>Don’t have an account?</STYLE.TextGray>
+                                    <LoginS.TextGrayStyled>
+                                        Don’t have an account?
+                                    </LoginS.TextGrayStyled>
 
-                                    <STYLE.Link href={url.registrationUrl}>
+                                    <LoginS.LinkStyled href={url.registrationUrl}>
                                         Become a Merchant
-                                    </STYLE.Link>
+                                    </LoginS.LinkStyled>
                                 </LoginS.SignUpWrapper>
                             )}
                         </LoginS.ButtonsWrapper>

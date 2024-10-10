@@ -151,14 +151,16 @@ export const LoginPage = () => {
 
                             {!isMobile && (
                                 <LoginS.SignUpWrapper>
-                                    <STYLE.TextGray>Don’t have an account?</STYLE.TextGray>
+                                    <LoginS.TextGrayStyled>
+                                        Don’t have an account?
+                                    </LoginS.TextGrayStyled>
 
-                                    <STYLE.Link
+                                    <LoginS.LinkStyled
                                         href="/"
                                         // href={url.registrationUrl}
                                     >
                                         Become a Merchant
-                                    </STYLE.Link>
+                                    </LoginS.LinkStyled>
                                 </LoginS.SignUpWrapper>
                             )}
                         </LoginS.ButtonsWrapper>
