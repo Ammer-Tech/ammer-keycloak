@@ -20,9 +20,9 @@ export default function LoginPageExpired(
 
     const appLink =
         kcContext.realm.displayName === 'AmmerCapitalMerchants'
-            ? 'https://merchant.ammer.group/'
+            ? 'https://eu.merchants.ammer.capital'
             : kcContext.realm.displayName === 'AmmerCapitalCH'
-            ? 'https://merchants.ammer.capital'
+            ? 'https://ch.merchants.ammer.capital'
             : 'https://merchants.ammer.io/';
 
     useEffect(() => {
