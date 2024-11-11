@@ -14,6 +14,7 @@ const LoginUpdatePassword = lazy(() => import('./pages/LoginUpdatePassword'));
 const LoginVerifyEmail = lazy(() => import('./pages/LoginVerifyEmail'));
 const LoginPageExpired = lazy(() => import('./pages/LoginPageExpired'));
 const Info = lazy(() => import('./pages/Info'));
+const Error = lazy(() => import('./pages/Error'));
 // const Info = lazy(() => import('keycloakify/login/pages/Info'));
 
 // This is like adding classes to theme.properties
@@ -83,6 +84,13 @@ export default function KcApp(props: { kcContext: KcContext }) {
                     case 'login-page-expired.ftl':
                         return (
                             <LoginPageExpired
+                                {...{ kcContext, i18n, Template, classes }}
+                                doUseDefaultCss={true}
+                            />
+                        );
+                    case 'error.ftl':
+                        return (
+                            <Error
                                 {...{ kcContext, i18n, Template, classes }}
                                 doUseDefaultCss={true}
                             />

@@ -40,6 +40,8 @@ export const NavigationRouter = observer(() => {
 
                     <Route path={C.INFO_PAGE} element={<PAGES.Info />} />
 
+                    <Route path={C.ERROR_PAGE} element={<PAGES.Error />} />
+
                     <Route path="*" element={<PAGES.LoginPage />} />
                 </Routes>
             </S.MainWrapper>
