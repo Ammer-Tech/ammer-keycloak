@@ -23,7 +23,9 @@ export const LoginPage = () => {
 
     const isPaymentPage = false;
     const isAmmerCapitalEU = false;
-    //  const isAmmerCapitalEU = kcContext.realm.displayName === 'AmmerCapitalMerchants'
+    // const isAmmerCapitalEU =
+    //     kcContext.realm.displayName === 'AmmerCapitalMerchants' ||
+    //     kcContext.realm.displayName === 'MerchantCustodyDev';
     const isAmmerCapitalCH = false;
     //  const isAmmerCapitalCH = kcContext.realm.displayName === 'AmmerCapitalCH'
 

@@ -13,6 +13,7 @@ import { validateEmail, validatePassword } from 'utils';
 export const RegisterPage = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [companyName, setCompanyName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -24,14 +25,17 @@ export const RegisterPage = () => {
 
     const { isMobile } = useDeviceType();
 
-    const isAmmerCapitalEU = false;
-    //  const isAmmerCapitalEU = kcContext.realm.displayName === 'AmmerCapitalMerchants'
+    const isAmmerCapitalEU = true;
+    // const isAmmerCapitalEU =
+    //     kcContext.realm.displayName === 'AmmerCapitalMerchants' ||
+    //     kcContext.realm.displayName === 'MerchantCustodyDev';
     const isAmmerCapitalCH = false;
     //  const isAmmerCapitalCH = kcContext.realm.displayName === 'AmmerCapitalCH'
 
     const conditionForButtonDisabled =
         !firstName ||
         !lastName ||
+        !companyName ||
         !email ||
         !password ||
         !confirmPassword ||
@@ -106,6 +110,26 @@ export const RegisterPage = () => {
                                 isRequired
                             />
                         </STYLE.ColumnWrapper>
+
+                        {(isAmmerCapitalEU || isAmmerCapitalCH) && (
+                            <STYLE.ColumnWrapper>
+                                <STYLE.InputTitle>Company Name</STYLE.InputTitle>
+
+                                <Input
+                                    value={companyName}
+                                    setValue={setCompanyName}
+                                    inputProps={{
+                                        id: 'companyName',
+                                        name: 'companyName',
+                                        header: 'Company Name',
+                                        defaultValue: '',
+                                    }}
+                                    type="text"
+                                    placeholder="Company Name"
+                                    isRequired
+                                />
+                            </STYLE.ColumnWrapper>
+                        )}
 
                         <STYLE.ColumnWrapper>
                             <STYLE.InputTitle>E-mail</STYLE.InputTitle>

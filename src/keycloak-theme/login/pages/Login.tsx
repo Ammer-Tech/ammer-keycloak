@@ -41,7 +41,9 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: 'log
 
     const { isMobile } = useDeviceType();
 
-    const isAmmerCapitalEU = kcContext.realm.displayName === 'AmmerCapitalMerchants';
+    const isAmmerCapitalEU =
+        kcContext.realm.displayName === 'AmmerCapitalMerchants' ||
+        kcContext.realm.displayName === 'MerchantCustodyDev';
     const isAmmerCapitalCH = kcContext.realm.displayName === 'AmmerCapitalCH';
 
     useEffect(() => {

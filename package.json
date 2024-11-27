@@ -1,6 +1,6 @@
 {
-    "name": "merchant-keycloak-2.2.0",
-    "version": "2.2.0",
+    "name": "stage-merchant-keycloak",
+    "version": "3.0.0",
     "private": true,
     "dependencies": {
         "@emotion/react": "11.11.1",

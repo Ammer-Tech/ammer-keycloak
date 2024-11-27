@@ -6,7 +6,7 @@ export type KcContextExtension =
     // NOTE: register.ftl is deprecated in favor of register-user-profile.ftl
     // but let's say we use it anyway and have this plugin enabled: https://github.com/micedre/keycloak-mail-whitelisting
     // keycloak-mail-whitelisting define the non standard ftl global authorizedMailDomains, we declare it here.
-    | { pageId: 'register.ftl'; authorizedMailDomains: string[] };
+    | { pageId: 'register-user-profile.ftl'; authorizedMailDomains: string[] };
 
 // NOTE: In most of the cases you do not need to overload the KcContext, you can
 // just call createGetKcContext(...) without type arguments.
@@ -44,24 +44,39 @@ export const { getKcContext } = createGetKcContext<KcContextExtension>({
         {
             pageId: 'error.ftl',
         },
+        // {
+        //     pageId: 'register.ftl',
+        //     authorizedMailDomains: [
+        //         'example.com',
+        //         'another-example.com',
+        //         '*.yet-another-example.com',
+        //         '*.example.com',
+        //         'hello-world.com',
+        //     ],
+        //     // Simulate we got an error with the email field
+        //     messagesPerField: {
+        //         printIfExists: <T>(fieldName: string, className: T) => {
+        //             console.log({ fieldName });
+        //             return fieldName === 'email' ? className : undefined;
+        //         },
+        //         existsError: (fieldName: string) => fieldName === 'email',
+        //         get: (fieldName: string) => `Fake error for ${fieldName}`,
+        //         exists: (fieldName: string) => fieldName === 'email',
+        //     },
+        // },
         {
-            pageId: 'register.ftl',
-            authorizedMailDomains: [
-                'example.com',
-                'another-example.com',
-                '*.yet-another-example.com',
-                '*.example.com',
-                'hello-world.com',
-            ],
-            // Simulate we got an error with the email field
-            messagesPerField: {
-                printIfExists: <T>(fieldName: string, className: T) => {
-                    console.log({ fieldName });
-                    return fieldName === 'email' ? className : undefined;
-                },
-                existsError: (fieldName: string) => fieldName === 'email',
-                get: (fieldName: string) => `Fake error for ${fieldName}`,
-                exists: (fieldName: string) => fieldName === 'email',
+            pageId: 'register-user-profile.ftl',
+            locale: {
+                currentLanguageTag: 'en',
+            },
+            profile: {
+                attributes: [
+                    {
+                        displayName: '${companyName}',
+                        value: undefined,
+                        name: 'companyName',
+                    },
+                ],
             },
         },
     ],

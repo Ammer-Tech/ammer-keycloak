@@ -16,14 +16,15 @@ import type { I18n } from '../i18n';
 import type { KcContext } from '../kcContext';
 
 export default function Register(
-    props: PageProps<Extract<KcContext, { pageId: 'register.ftl' }>, I18n>,
+    props: PageProps<Extract<KcContext, { pageId: 'register-user-profile.ftl' }>, I18n>,
 ) {
     const { kcContext } = props;
 
-    const { url, register, message } = kcContext;
+    const { url, message } = kcContext;
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [companyName, setCompanyName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -35,12 +36,15 @@ export default function Register(
 
     const { isMobile } = useDeviceType();
 
-    const isAmmerCapitalEU = kcContext.realm.displayName === 'AmmerCapitalMerchants';
+    const isAmmerCapitalEU =
+        kcContext.realm.displayName === 'AmmerCapitalMerchants' ||
+        kcContext.realm.displayName === 'MerchantCustodyDev';
     const isAmmerCapitalCH = kcContext.realm.displayName === 'AmmerCapitalCH';
 
     const conditionForButtonDisabled =
         !firstName ||
         !lastName ||
+        !companyName ||
         !email ||
         !password ||
         !confirmPassword ||
@@ -96,7 +100,6 @@ export default function Register(
                                     id: 'firstName',
                                     name: 'firstName',
                                     header: 'First Name',
-                                    defaultValue: register.formData.firstName ?? '',
                                 }}
                                 type="text"
                                 placeholder="First Name"
@@ -114,13 +117,32 @@ export default function Register(
                                     id: 'lastName',
                                     name: 'lastName',
                                     header: 'Last Name',
-                                    defaultValue: register.formData.lastName ?? '',
                                 }}
                                 type="text"
                                 placeholder="Last Name"
                                 isRequired
                             />
                         </STYLE.ColumnWrapper>
+
+                        {(isAmmerCapitalEU || isAmmerCapitalCH) && (
+                            <STYLE.ColumnWrapper>
+                                <STYLE.InputTitle>Company Name</STYLE.InputTitle>
+
+                                <Input
+                                    value={companyName}
+                                    setValue={setCompanyName}
+                                    inputProps={{
+                                        id: 'companyName',
+                                        name: 'companyName',
+                                        header: 'Company Name',
+                                        defaultValue: '',
+                                    }}
+                                    type="text"
+                                    placeholder="Company Name"
+                                    isRequired
+                                />
+                            </STYLE.ColumnWrapper>
+                        )}
 
                         <STYLE.ColumnWrapper>
                             <STYLE.InputTitle>E-mail</STYLE.InputTitle>
@@ -132,7 +154,6 @@ export default function Register(
                                 inputProps={{
                                     name: 'email',
                                     header: 'E-mail',
-                                    defaultValue: register.formData.email ?? '',
                                 }}
                                 type="text"
                                 placeholder="E-mail"
