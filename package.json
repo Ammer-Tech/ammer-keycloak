@@ -1,5 +1,5 @@
 {
-    "name": "stage-merchant-keycloak",
+    "name": "merchant-keycloak",
     "version": "3.0.0",
     "private": true,
     "dependencies": {

@@ -1,8 +1,7 @@
 import { createGetKcContext } from 'keycloakify/login';
 
 export type KcContextExtension =
-    | { pageId: 'login.ftl' }
-    | { pageId: 'login-reset-password.ftl' }
+    | { pageId: 'login-verify-email-code.ftl' }
     // NOTE: register.ftl is deprecated in favor of register-user-profile.ftl
     // but let's say we use it anyway and have this plugin enabled: https://github.com/micedre/keycloak-mail-whitelisting
     // keycloak-mail-whitelisting define the non standard ftl global authorizedMailDomains, we declare it here.
@@ -37,6 +36,9 @@ export const { getKcContext } = createGetKcContext<KcContextExtension>({
         },
         {
             pageId: 'login-page-expired.ftl',
+        },
+        {
+            pageId: 'login-verify-email-code.ftl',
         },
         {
             pageId: 'info.ftl',

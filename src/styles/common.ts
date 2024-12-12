@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { theme } from './const';
@@ -72,30 +73,49 @@ export const EmailText = styled.span`
     color: ${theme.colors.blackText};
 `;
 
-export const TextGray = styled.p<{ isCenter?: boolean }>`
+export const Text = styled.p<{ isCenter?: boolean }>`
+    width: fit-content;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 158%;
+
+    text-align: ${({ isCenter = true }) => isCenter && 'center'};
+`;
+
+export const TextGray = styled(Text)`
+    color: ${theme.colors.gray};
+`;
+
+export const Link = styled.a<{ isButton?: boolean }>`
     width: fit-content;
 
     font-size: 16px;
     font-weight: 700;
-    line-height: 158%;
-
-    align-items: ${({ isCenter = true }) => isCenter && 'center'};
-
-    color: ${theme.colors.gray};
-`;
-
-export const Link = styled.a`
-    width: fit-content;
-
-    font-size: ${theme.text.normal.fontSize};
-    font-weight: ${theme.text.extraHuge.fontWeight};
-    line-height: 23.2px;
+    line-height: 21.6px;
 
     color: ${theme.colors.blackText};
 
     white-space: nowrap;
 
     cursor: pointer;
+
+    ${({ isButton }) =>
+        isButton &&
+        css`
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+            height: 58px;
+
+            color: ${theme.colors.white};
+
+            background-color: ${theme.colors.blackText};
+
+            border-radius: 40px;
+        `}
 `;
 
 export const Title = styled.h1<{ isCenter?: boolean }>`
@@ -112,16 +132,16 @@ export const Title = styled.h1<{ isCenter?: boolean }>`
 `;
 
 export const InputTitle = styled.p`
-    font-size: ${theme.text.small.fontSize};
-    font-weight: ${theme.text.normal.fontWeight};
+    font-size: 14px;
+    font-weight: 500;
     line-height: 18.9px;
 
     color: ${theme.colors.blackText};
 `;
 
-export const InputsWrapper = styled(ColumnWrapper)`
-    gap: 26px;
-    margin-top: 40px;
+export const InputsWrapper = styled(ColumnWrapper)<{ marginTop?: number }>`
+    gap: ${({ gap = 26 }) => `${gap}px`};
+    margin-top: ${({ marginTop = 40 }) => `${marginTop}px`};
 `;
 
 export const EmailIcon = styled.img`
@@ -130,4 +150,10 @@ export const EmailIcon = styled.img`
     min-width: 105px;
     min-height: 111px;
     margin: 14px auto 40px;
+`;
+
+export const WrongIcon = styled.img`
+    width: 96px;
+    height: 78px;
+    margin: 0 auto 20px;
 `;
