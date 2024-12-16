@@ -157,3 +157,9 @@ export const WrongIcon = styled.img`
     height: 78px;
     margin: 0 auto 20px;
 `;
+
+export const CodeIcon = styled.img`
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 32px;
+`;
