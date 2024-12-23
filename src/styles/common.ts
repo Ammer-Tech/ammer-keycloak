@@ -163,3 +163,9 @@ export const CodeIcon = styled.img`
     height: 65px;
     margin: 0 auto 32px;
 `;
+
+export const ResendCode = styled(Text)`
+    margin: 24px auto 0;
+
+    cursor: pointer;
+`;

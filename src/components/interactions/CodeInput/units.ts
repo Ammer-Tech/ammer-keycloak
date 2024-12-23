@@ -1,12 +1,18 @@
 import styled from '@emotion/styled';
 
-import { theme } from 'styles';
+import { additionalBreakpoint, theme } from 'styles';
 
 export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 12px;
+
+    margin: 0 auto;
+
+    ${additionalBreakpoint(450)} {
+        gap: 8px;
+    }
 `;
 
 export const Input = styled.input`
@@ -27,5 +33,10 @@ export const Input = styled.input`
         border-color: #000;
 
         outline: none;
+    }
+
+    ${additionalBreakpoint(450)} {
+        width: 40px;
+        height: 50px;
     }
 `;

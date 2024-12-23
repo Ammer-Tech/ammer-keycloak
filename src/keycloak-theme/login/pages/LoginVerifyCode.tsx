@@ -69,6 +69,10 @@ export default function LoginVerifyCode(
                             Continue
                         </Button>
                     </STYLE.InputsWrapper>
+
+                    <STYLE.ResendCode>
+                        <a href="">Click here to resend the code</a>
+                    </STYLE.ResendCode>
                 </Form>
             </STYLE.PageContent>
 

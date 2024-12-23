@@ -23,7 +23,7 @@ export const LoginVerifyCode = () => {
 
             <STYLE.PageContent>
                 <Form
-                    padding={isMobile ? '40px 32px' : '60px 80px 40px'}
+                    padding={isMobile ? '40px 24px' : '60px 80px 40px'}
                     maxWidth="520px"
                     id="kc-verify-email-code-form"
                     // action={url.loginAction}
@@ -53,6 +53,10 @@ export const LoginVerifyCode = () => {
                             Continue
                         </Button>
                     </STYLE.InputsWrapper>
+
+                    <STYLE.ResendCode>
+                        <a href="">Click here to resend the code</a>
+                    </STYLE.ResendCode>
                 </Form>
             </STYLE.PageContent>
 
