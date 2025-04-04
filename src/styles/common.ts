@@ -36,30 +36,49 @@ export const PageContent = styled.div`
     }
 `;
 
-export const ColumnWrapper = styled.div<{ gap?: number; fullWidth?: boolean }>`
+export const ColumnWrapper = styled.div<{
+    gap?: number;
+    fullWidth?: boolean;
+    marginTop?: number;
+    isCenter?: boolean;
+}>`
     display: flex;
+    align-items: ${({ isCenter }) => isCenter && 'center'};
     flex-direction: column;
     gap: ${({ gap = 8 }) => `${gap}px`};
 
     width: ${({ fullWidth }) => fullWidth && '100%'};
+    margin-top: ${({ marginTop = 0 }) => `${marginTop}px`};
 `;
 
 export const FlexAlignCenterWrapper = styled.div<{
     gap?: number;
     fullWidth?: boolean;
     isCenter?: boolean;
+    isJustifyCenter?: boolean;
+    marginTop?: number;
+    withWrap?: boolean;
 }>`
     display: flex;
     align-items: ${({ isCenter = true }) => isCenter && 'center'};
+    justify-content: ${({ isJustifyCenter = false }) => isJustifyCenter && 'center'};
+    flex-wrap: ${({ withWrap }) => withWrap && 'wrap'};
     gap: ${({ gap = 8 }) => `${gap}px`};
 
     width: ${({ fullWidth }) => fullWidth && '100%'};
+    margin-top: ${({ marginTop = 0 }) => `${marginTop}px`};
 `;
 
-export const FlexBetweenWrapper = styled.div<{ gap?: number; fullWidth?: boolean }>`
+export const FlexBetweenWrapper = styled.div<{
+    gap?: number;
+    fullWidth?: boolean;
+    isCenter?: boolean;
+    withWrap?: boolean;
+}>`
     display: flex;
-    align-items: center;
+    align-items: ${({ isCenter = true }) => isCenter && 'center'};
     justify-content: space-between;
+    flex-wrap: ${({ withWrap }) => withWrap && 'wrap'};
     gap: ${({ gap = 8 }) => `${gap}px`};
 
     width: ${({ fullWidth }) => fullWidth && '100%'};
@@ -68,17 +87,17 @@ export const FlexBetweenWrapper = styled.div<{ gap?: number; fullWidth?: boolean
 export const EmailText = styled.span`
     font-size: 16px;
     font-weight: 700;
-    line-height: 158%;
+    line-height: 135%;
 
     color: ${theme.colors.blackText};
 `;
 
-export const Text = styled.p<{ isCenter?: boolean }>`
+export const Text = styled.p<{ isCenter?: boolean; isSmall?: boolean }>`
     width: fit-content;
 
-    font-size: 16px;
+    font-size: ${({ isSmall }) => (isSmall ? '14px' : '16px')};
     font-weight: 500;
-    line-height: 158%;
+    line-height: 135%;
 
     text-align: ${({ isCenter = true }) => isCenter && 'center'};
 `;
@@ -87,14 +106,14 @@ export const TextGray = styled(Text)`
     color: ${theme.colors.gray};
 `;
 
-export const Link = styled.a<{ isButton?: boolean }>`
+export const Link = styled.a<{ isButton?: boolean; color?: string; isSmall?: boolean }>`
     width: fit-content;
 
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 21.6px;
+    font-size: ${({ isSmall }) => (isSmall ? '14px' : '16px')};
+    font-weight: ${({ isSmall }) => (isSmall ? '500' : '700')};
+    line-height: 135%;
 
-    color: ${theme.colors.blackText};
+    color: ${({ color }) => color || theme.colors.blackText};
 
     white-space: nowrap;
 
@@ -121,20 +140,19 @@ export const Link = styled.a<{ isButton?: boolean }>`
 export const Title = styled.h1<{ isCenter?: boolean }>`
     font-size: 30px;
     font-weight: 700;
-    line-height: 158%;
+    line-height: 135%;
 
     text-align: ${({ isCenter }) => isCenter && 'center'};
 
     ${toEnd('mobile')} {
         font-size: 26px;
-        line-height: 158%;
     }
 `;
 
 export const InputTitle = styled.p`
     font-size: 14px;
     font-weight: 500;
-    line-height: 18.9px;
+    line-height: 135%;
 
     color: ${theme.colors.blackText};
 `;

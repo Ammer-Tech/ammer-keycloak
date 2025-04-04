@@ -63,7 +63,7 @@ button {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeSpeed;
-    line-height: 140%;
+    line-height: 135%;
 }
 
 h1,
@@ -74,7 +74,7 @@ h5,
 h6,
 p {
     margin: 0;
-    line-height: 140%;
+    line-height: 135%;
     transition: color 0.15s ease-in-out;
 }
 
@@ -216,9 +216,4 @@ a {
     100% {
         background-color: rgba(115, 143, 172, 0.07);
     }
-}
-
-#react-qrcode-logo {
-    width: 200px !important;
-    height: 200px !important;
 }

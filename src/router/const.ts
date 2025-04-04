@@ -7,3 +7,4 @@ export const EXPIRED_PAGE = '/expired';
 export const INFO_PAGE = '/info';
 export const ERROR_PAGE = '/error';
 export const CODE_PAGE = '/code';
+export const QR_PAGE = '/qr-code';

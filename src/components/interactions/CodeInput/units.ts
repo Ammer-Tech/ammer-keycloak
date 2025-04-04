@@ -21,7 +21,7 @@ export const Input = styled.input`
 
     font-size: 30px;
     font-weight: 700;
-    line-height: 158%;
+    line-height: 135%;
 
     text-align: center;
 

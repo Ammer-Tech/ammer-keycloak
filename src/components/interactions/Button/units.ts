@@ -142,6 +142,7 @@ export const Button = styled(ButtonBase)<T.IButton>`
             : primaryButtonStyle}
 
     max-width: ${({ maxWidth = '100%' }) => maxWidth};
+    margin-top: ${({ marginTop = 0 }) => `${marginTop}px`};
 `;
 
 export const TextButton = styled.button`

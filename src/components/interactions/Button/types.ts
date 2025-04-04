@@ -9,6 +9,7 @@ export interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
     iconColor?: string;
     iconSize?: number;
     loaderSize?: number;
+    marginTop?: number;
 }
 
 export interface ITextButton extends Omit<IButton, 'size' | 'styleScheme' | 'maxWidth'> {

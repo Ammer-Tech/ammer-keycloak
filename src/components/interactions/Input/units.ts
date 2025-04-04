@@ -56,7 +56,7 @@ export const Input = styled.input<{ withPadding: boolean }>`
         !withPadding ? theme.text.normal.fontWeight : theme.text.normal.fontWeight};
     font-size: ${({ withPadding }) =>
         !withPadding ? theme.text.tiny.fontSize : theme.text.tiny.fontSize};
-    line-height: 16.2px;
+    line-height: 135%;
 
     color: black;
 
@@ -106,7 +106,7 @@ export const RightLabel = styled.p<{ isError: boolean; isClearable?: boolean }>`
 
     font-weight: ${theme.text.normal.fontWeight};
     font-size: ${theme.text.tiny.fontSize};
-    line-height: 16px;
+    line-height: 135%;
 
     color: ${({ isError, isClearable }) =>
         isClearable ? theme.colors.blackText : isError ? theme.colors.red : theme.colors.gray};

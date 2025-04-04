@@ -90,11 +90,11 @@ export const SocialIcon = styled.img`
 export const LinkStyled = styled(Link)`
     font-size: 12px;
     font-weight: 500;
-    line-height: 16.2px;
+    line-height: 135%;
 `;
 
 export const TextGrayStyled = styled(TextGray)`
     font-size: 12px;
     font-weight: 500;
-    line-height: 16.2px;
+    line-height: 135%;
 `;

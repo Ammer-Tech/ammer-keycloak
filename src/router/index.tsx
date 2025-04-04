@@ -44,6 +44,8 @@ export const NavigationRouter = observer(() => {
 
                     <Route path={C.CODE_PAGE} element={<PAGES.LoginVerifyCode />} />
 
+                    <Route path={C.QR_PAGE} element={<PAGES.LoginQrCode />} />
+
                     <Route path="*" element={<PAGES.LoginPage />} />
                 </Routes>
             </S.MainWrapper>
