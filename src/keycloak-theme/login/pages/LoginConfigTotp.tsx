@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { QRCode } from 'react-qrcode-logo';
+import type { PageProps } from 'keycloakify/login/pages/PageProps';
 
 import { Form, NotificationRoot } from 'components/containers';
 import { Footer, Header } from 'components/core';
@@ -9,8 +10,25 @@ import { useDeviceType } from 'hooks';
 import * as STYLE from 'styles';
 import * as QrS from 'styles/loginQrPage';
 
-export const LoginQrCode = () => {
+import type { I18n } from '../i18n';
+import type { KcContext } from '../kcContext';
+
+export default function LoginConfigTotp(
+    props: PageProps<Extract<KcContext, { pageId: 'login-config-totp.ftl' }>, I18n>,
+) {
+    const { kcContext } = props;
+    const { url, totp } = kcContext;
+
     const [code, setCode] = useState<string>('');
+
+    console.log('kcContext', kcContext);
+
+    const appLink =
+        kcContext.realm.displayName === 'AmmerCapitalMerchants'
+            ? 'https://eu.merchants.ammer.capital'
+            : kcContext.realm.displayName === 'AmmerCapitalCH'
+            ? 'https://ch.merchants.ammer.capital'
+            : 'https://merchants.ammer.io/';
 
     const { isMobile } = useDeviceType();
 
@@ -18,15 +36,15 @@ export const LoginQrCode = () => {
         <STYLE.PageWrapper>
             <Header
                 buttonName="Log In"
-                // onClick={() => (window.location = '#' as Location | (string & Location))}
+                onClick={() => (window.location = appLink as Location | (string & Location))}
             />
 
             <STYLE.PageContent>
                 <Form
                     padding={isMobile ? '40px 24px' : '60px 80px 40px'}
                     maxWidth="570px"
-                    id="kc-verify-email-code-form"
-                    // action={url.loginAction}
+                    id="kc-totp-settings-form"
+                    action={url.loginAction}
                     method="post"
                 >
                     <STYLE.ColumnWrapper gap={48}>
@@ -54,18 +72,23 @@ export const LoginQrCode = () => {
                             </STYLE.EmailText>
 
                             <STYLE.ColumnWrapper style={{ margin: '12px 0 -20px' }} isCenter>
-                                {/* onClick={() => window.location.assign('https://reactjs.org/')} */}
+                                {/* onClick={() => window.location.assign('https://reactjs.org/')}*/}
 
                                 <QrS.QRCodeWrapper>
                                     <QRCode
-                                        value="https://reactjs.org/"
+                                        value={totp.qrUrl}
                                         bgColor="transparent"
                                         ecLevel="L"
                                         eyeRadius={8}
                                     />
                                 </QrS.QRCodeWrapper>
 
-                                <STYLE.Link color="#3F69FE" isSmall>
+                                <STYLE.Link
+                                    href={totp.manualUrl}
+                                    id="mode-manual"
+                                    color="#3F69FE"
+                                    isSmall
+                                >
                                     Unable to Scan ?
                                 </STYLE.Link>
                             </STYLE.ColumnWrapper>
@@ -90,11 +113,16 @@ export const LoginQrCode = () => {
                                     value={code}
                                     setValue={setCode}
                                     placeholder="One-time code"
+                                    inputProps={{
+                                        id: 'totp',
+                                        name: 'totp',
+                                        header: 'totp',
+                                    }}
                                 />
                             </STYLE.ColumnWrapper>
                         </STYLE.ColumnWrapper>
 
-                        <Button marginTop={12} disabled>
+                        <Button marginTop={12} disabled={!code}>
                             Submit
                         </Button>
                     </STYLE.ColumnWrapper>
@@ -106,4 +134,4 @@ export const LoginQrCode = () => {
             <NotificationRoot />
         </STYLE.PageWrapper>
     );
-};
+}

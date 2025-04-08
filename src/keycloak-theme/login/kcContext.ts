@@ -41,6 +41,9 @@ export const { getKcContext } = createGetKcContext<KcContextExtension>({
             pageId: 'login-verify-email-code.ftl',
         },
         {
+            pageId: 'login-config-totp.ftl',
+        },
+        {
             pageId: 'info.ftl',
         },
         {

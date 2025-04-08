@@ -16,6 +16,7 @@ const LoginPageExpired = lazy(() => import('./pages/LoginPageExpired'));
 const Info = lazy(() => import('./pages/Info'));
 const Error = lazy(() => import('./pages/Error'));
 const LoginVerifyCode = lazy(() => import('./pages/LoginVerifyCode'));
+const LoginConfigTotp = lazy(() => import('./pages/LoginConfigTotp'));
 // const Info = lazy(() => import('keycloakify/login/pages/Info'));
 
 // This is like adding classes to theme.properties
@@ -93,6 +94,13 @@ export default function KcApp(props: { kcContext: KcContext }) {
                     case 'login-verify-email-code.ftl':
                         return (
                             <LoginVerifyCode
+                                {...{ kcContext, i18n, Template, classes }}
+                                doUseDefaultCss={true}
+                            />
+                        );
+                    case 'login-config-totp.ftl':
+                        return (
+                            <LoginConfigTotp
                                 {...{ kcContext, i18n, Template, classes }}
                                 doUseDefaultCss={true}
                             />
