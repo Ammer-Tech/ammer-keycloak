@@ -21,8 +21,6 @@ export default function LoginConfigTotp(
 
     const [code, setCode] = useState<string>('');
 
-    console.log('kcContext', kcContext);
-
     const appLink =
         kcContext.realm.displayName === 'AmmerCapitalMerchants'
             ? 'https://eu.merchants.ammer.capital'
