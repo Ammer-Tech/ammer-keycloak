@@ -21,14 +21,26 @@ export default function LoginConfigTotp(
 
     const [code, setCode] = useState<string>('');
 
-    const appLink =
-        kcContext.realm.displayName === 'AmmerCapitalMerchants'
-            ? 'https://eu.merchants.ammer.capital'
-            : kcContext.realm.displayName === 'AmmerCapitalCH'
-            ? 'https://ch.merchants.ammer.capital'
-            : 'https://merchants.ammer.io/';
+    const isEU = kcContext.realm.displayName === 'AmmerCapitalMerchants';
+    const isCH = kcContext.realm.displayName === 'AmmerCapitalCH';
+
+    const appLink = isEU
+        ? 'https://eu.merchants.ammer.capital'
+        : isCH
+        ? 'https://ch.merchants.ammer.capital'
+        : 'https://merchants.ammer.io/';
 
     const { isMobile } = useDeviceType();
+
+    const appName = isEU
+        ? 'EU Ammer Platform'
+        : isCH
+        ? 'CH Ammer Platform'
+        : 'Non-Custodial Ammer Platform';
+
+    // типы ругаются на username, но в реальности это email и оно есть (проверено через devtools 09.04.2025)
+    // @ts-ignore
+    const otpAuthUrl = `otpauth://totp/${appName}:${totp.username}?secret=${totp.totpSecretEncoded}&issuer=${appName}&algorithm=SHA1&digits=6&period=30`;
 
     return (
         <STYLE.PageWrapper>
@@ -70,11 +82,9 @@ export default function LoginConfigTotp(
                             </STYLE.EmailText>
 
                             <STYLE.ColumnWrapper style={{ margin: '12px 0 -20px' }} isCenter>
-                                {/* onClick={() => window.location.assign('https://reactjs.org/')}*/}
-
                                 <QrS.QRCodeWrapper>
                                     <QRCode
-                                        value={totp.qrUrl}
+                                        value={otpAuthUrl}
                                         bgColor="transparent"
                                         ecLevel="L"
                                         eyeRadius={8}
@@ -82,7 +92,7 @@ export default function LoginConfigTotp(
                                 </QrS.QRCodeWrapper>
 
                                 <STYLE.Link
-                                    href={totp.manualUrl}
+                                    href={otpAuthUrl}
                                     id="mode-manual"
                                     color="#3F69FE"
                                     isSmall
