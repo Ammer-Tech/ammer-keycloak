@@ -7,10 +7,10 @@ export const QRCodeWrapper = styled.div`
     align-items: center;
     justify-content: center;
 
-    width: 180px;
-    height: 180px;
-    min-width: 180px;
-    min-height: 180px;
+    width: 220px;
+    height: 220px;
+    min-width: 220px;
+    min-height: 220px;
 
     background-color: ${theme.colors.background};
 
