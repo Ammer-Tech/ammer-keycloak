@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { QRCode } from 'react-qrcode-logo';
 
 import { Form, NotificationRoot } from 'components/containers';
 import { Footer, Header } from 'components/core';
@@ -54,20 +53,11 @@ export const LoginQrCode = () => {
                             </STYLE.EmailText>
 
                             <STYLE.ColumnWrapper style={{ margin: '12px 0 -20px' }} isCenter>
-                                {/* onClick={() => window.location.assign('https://reactjs.org/')} */}
-
-                                <QrS.QRCodeWrapper>
-                                    <QRCode
-                                        value="https://reactjs.org/"
-                                        bgColor="transparent"
-                                        ecLevel="L"
-                                        eyeRadius={8}
-                                    />
-                                </QrS.QRCodeWrapper>
-
-                                <STYLE.Link color="#3F69FE" isSmall>
-                                    Unable to Scan ?
-                                </STYLE.Link>
+                                <QrS.QRCodeImage
+                                    id="kc-totp-secret-qr-code"
+                                    src="data:image/png;base64, ${totp.totpSecretQrCode}"
+                                    alt="Figure: Barcode"
+                                />
                             </STYLE.ColumnWrapper>
                         </STYLE.ColumnWrapper>
 
@@ -90,6 +80,14 @@ export const LoginQrCode = () => {
                                     value={code}
                                     setValue={setCode}
                                     placeholder="One-time code"
+                                />
+
+                                <QrS.InputStyled
+                                    value={'appName'}
+                                    inputProps={{
+                                        id: 'userLabel',
+                                        name: 'userLabel',
+                                    }}
                                 />
                             </STYLE.ColumnWrapper>
                         </STYLE.ColumnWrapper>

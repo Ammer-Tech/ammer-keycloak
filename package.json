@@ -22,7 +22,6 @@
         "react-dom": "18.2.0",
         "react-i18next": "13.0.3",
         "react-loading-skeleton": "3.3.1",
-        "react-qrcode-logo": "3.0.0",
         "react-router-dom": "6.14.2",
         "react-scripts": "5.0.1",
         "react-toastify": "10.0.5",
@@ -51,7 +50,7 @@
         "lint:prettier": "./node_modules/.bin/prettier -c --write src",
         "lint:tsc": "./node_modules/typescript/bin/tsc",
         "lint": "npm run lint:tsc && npm run lint:eslint && npm run lint:prettier",
-        "build-keycloak-theme": "rm -rf ./build && rm -rf ./build_keycloak && npm run build && keycloakify"
+        "build-keycloak-theme": "rm -rf ./build && rm -rf ./build_keycloak && rm -rf ./node_modules/.cache/keycloakify && npm run build && keycloakify"
     },
     "eslintConfig": {
         "extends": [

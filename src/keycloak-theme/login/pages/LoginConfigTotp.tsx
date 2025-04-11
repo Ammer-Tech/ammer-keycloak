@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { QRCode } from 'react-qrcode-logo';
 import type { PageProps } from 'keycloakify/login/pages/PageProps';
 
 import { Form, NotificationRoot } from 'components/containers';
@@ -32,15 +31,7 @@ export default function LoginConfigTotp(
 
     const { isMobile } = useDeviceType();
 
-    const appName = isEU
-        ? 'EU Ammer Platform'
-        : isCH
-        ? 'CH Ammer Platform'
-        : 'Non-Custodial Ammer Platform';
-
-    // типы ругаются на username, но в реальности это email и оно есть (проверено через devtools 09.04.2025)
-    // @ts-ignore
-    const otpAuthUrl = `otpauth://totp/${appName}:${totp.username}?secret=${totp.totpSecretEncoded}&issuer=${appName}&algorithm=SHA1&digits=6&period=30`;
+    const appName = kcContext.realm.displayName;
 
     return (
         <STYLE.PageWrapper>
@@ -82,23 +73,11 @@ export default function LoginConfigTotp(
                             </STYLE.EmailText>
 
                             <STYLE.ColumnWrapper style={{ margin: '12px 0 -20px' }} isCenter>
-                                <QrS.QRCodeWrapper>
-                                    <QRCode
-                                        value={otpAuthUrl}
-                                        bgColor="transparent"
-                                        ecLevel="L"
-                                        eyeRadius={8}
-                                    />
-                                </QrS.QRCodeWrapper>
-
-                                <STYLE.Link
-                                    href={otpAuthUrl}
-                                    id="mode-manual"
-                                    color="#3F69FE"
-                                    isSmall
-                                >
-                                    Unable to Scan ?
-                                </STYLE.Link>
+                                <QrS.QRCodeImage
+                                    id="kc-totp-secret-qr-code"
+                                    src={`data:image/png;base64, ${totp.totpSecretQrCode}`}
+                                    alt="Figure: Barcode"
+                                />
                             </STYLE.ColumnWrapper>
                         </STYLE.ColumnWrapper>
 
@@ -124,7 +103,22 @@ export default function LoginConfigTotp(
                                     inputProps={{
                                         id: 'totp',
                                         name: 'totp',
-                                        header: 'totp',
+                                    }}
+                                />
+
+                                <QrS.InputStyled
+                                    value={appName || ''}
+                                    inputProps={{
+                                        id: 'userLabel',
+                                        name: 'userLabel',
+                                    }}
+                                />
+
+                                <QrS.InputStyled
+                                    value={totp.totpSecret || ''}
+                                    inputProps={{
+                                        id: 'totpSecret',
+                                        name: 'totpSecret',
                                     }}
                                 />
                             </STYLE.ColumnWrapper>
