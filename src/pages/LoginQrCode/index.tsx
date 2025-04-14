@@ -80,6 +80,10 @@ export const LoginQrCode = () => {
                                     value={code}
                                     setValue={setCode}
                                     placeholder="One-time code"
+                                    inputProps={{
+                                        id: 'totp',
+                                        name: 'totp',
+                                    }}
                                 />
 
                                 <QrS.InputStyled
@@ -89,10 +93,18 @@ export const LoginQrCode = () => {
                                         name: 'userLabel',
                                     }}
                                 />
+
+                                <QrS.InputStyled
+                                    value={'totp.totpSecret'}
+                                    inputProps={{
+                                        id: 'totpSecret',
+                                        name: 'totpSecret',
+                                    }}
+                                />
                             </STYLE.ColumnWrapper>
                         </STYLE.ColumnWrapper>
 
-                        <Button marginTop={12} disabled>
+                        <Button marginTop={12} disabled={!code}>
                             Submit
                         </Button>
                     </STYLE.ColumnWrapper>

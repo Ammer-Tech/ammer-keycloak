@@ -31,7 +31,7 @@ export default function LoginConfigTotp(
 
     const { isMobile } = useDeviceType();
 
-    const appName = kcContext.realm.displayName;
+    const realmName = kcContext.realm.displayName;
 
     return (
         <STYLE.PageWrapper>
@@ -107,7 +107,7 @@ export default function LoginConfigTotp(
                                 />
 
                                 <QrS.InputStyled
-                                    value={appName || ''}
+                                    value={realmName || ''}
                                     inputProps={{
                                         id: 'userLabel',
                                         name: 'userLabel',

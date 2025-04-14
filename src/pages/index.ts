@@ -1,5 +1,6 @@
 export { Error } from './Error';
 export { Info } from './Info';
+export { LoginOtp } from './LoginOtp';
 export { LoginPage } from './LoginPage';
 export { LoginPageExpired } from './LoginPageExpired';
 export { LoginQrCode } from './LoginQrCode';

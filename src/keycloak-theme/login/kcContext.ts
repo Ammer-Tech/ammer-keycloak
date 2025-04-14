@@ -44,6 +44,9 @@ export const { getKcContext } = createGetKcContext<KcContextExtension>({
             pageId: 'login-config-totp.ftl',
         },
         {
+            pageId: 'login-otp.ftl',
+        },
+        {
             pageId: 'info.ftl',
         },
         {
